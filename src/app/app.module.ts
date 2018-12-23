@@ -9,11 +9,17 @@ import { FooterComponent } from './Home/footer/footer.component';
 import { ProfileMenueComponent } from './Home/profile-menue/profile-menue.component';
 import { HomeComponent } from './Home/home/home.component';
 import { Page404Component } from './Home/page404/page404.component';
-import { CouponsModule } from './coupons/coupons.module';
-import { CompaniesModule } from './companies/companies.module';
-import { CustomersModule } from './customers/customers.module';
 import { RegisterComponent } from './Home/register/register.component';
 import { LoginComponent } from './Home/login/login.component';
+import { HttpClientModule } from '@angular/common/http';
+import { CommonModule } from '@angular/common';
+import { CustomerComponent } from './customers/customer/customer.component';
+import { CustomerListComponent } from './customers/customer-list/customer-list.component';
+import { CouponComponent } from './coupons/coupon/coupon.component';
+import { CouponListComponent } from './coupons/coupon-list/coupon-list.component';
+import { CompanyComponent } from './companies/company/company.component';
+import { CompanyListComponent } from './companies/company-list/company-list.component';
+import { ErrorAlertComponent } from './Home/error-alert/error-alert.component';
 
 @NgModule({
   declarations: [
@@ -25,14 +31,21 @@ import { LoginComponent } from './Home/login/login.component';
     HomeComponent,
     Page404Component,
     RegisterComponent,
-    LoginComponent
+    CustomerComponent,
+    CustomerListComponent,
+    CouponComponent,
+    CouponListComponent,
+    CompanyComponent,
+    CompanyListComponent,
+    LoginComponent,
+    ErrorAlertComponent
   ],
   imports: [
     BrowserModule,
+    CommonModule,
     AppRoutingModule,
-    CouponsModule,
-    CompaniesModule,
-    CustomersModule
+
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [LayoutComponent]

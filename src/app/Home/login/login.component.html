@@ -1,3 +1,15 @@
-<p>
-  login works!
-</p>
+
+  <button (click)="UserGoodLogin()">successfull login</button>
+  <button (click)="UserBadLogin()">failed login</button>
+  <div *ngIf="testUser">
+    <p>{{ testUser.email }}</p>
+    <p>{{ testUser.name }}</p>
+    <p>{{ testUser.password }}</p>
+    <p>{{ testUser.userID }}</p>
+    <p>{{ testUser.userType }}</p>
+  </div>
+
+  <div class ="massege" *ngIf="msg">
+    <app-error-alert errorMassege="{{ msg }}"></app-error-alert>
+  </div>
+
