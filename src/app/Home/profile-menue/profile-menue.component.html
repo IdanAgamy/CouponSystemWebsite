@@ -1,0 +1,20 @@
+<div *ngIf="!logedin">
+  <br>
+  <p>Welcome!</p>
+
+  <p>For new user, please register</p>
+
+  <button type="button" class="btn btn-primary"  routerLink="register">Register</button>
+<br><br>
+  <p>For an existing account</p>
+<button type="button" class="btn btn-secondary"  routerLink="login">Log In</button>
+</div>
+
+<div *ngIf="logedin">
+  <br>
+  Welcome User!
+  <br><br>
+  <button type="button" class="btn btn-primary"  routerLink="profile">Profile</button>
+</div>
+
+
