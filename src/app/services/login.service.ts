@@ -11,9 +11,9 @@ export class LoginService {
 
   constructor(private http: HttpClient) { }
 
-  public login(userd: UserLogin): Observable<UserLogin> {
+  public login(user: UserLogin): Observable<UserLogin> {
     // tslint:disable-next-line:max-line-length
-    return this.http.post<UserLogin>('http://localhost:8080/CouponManagmentSystemVer3/login', userd);
+    return this.http.post<UserLogin>('http://localhost:8080/CouponManagmentSystemVer3/login', user);
     // catchError(this.handleError)
     // );
   }

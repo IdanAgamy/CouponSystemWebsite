@@ -7,12 +7,18 @@ import { CompanyListComponent } from './companies/company-list/company-list.comp
 import { CustomerListComponent } from './customers/customer-list/customer-list.component';
 import { RegisterComponent } from './Home/register/register.component';
 import { LoginComponent } from './Home/login/login.component';
+import { CouponComponent } from './coupons/coupon/coupon.component';
+import { CompanyComponent } from './companies/company/company.component';
+import { CustomerComponent } from './customers/customer/customer.component';
 
 const routes: Routes = [
   {path: 'home',     component: HomeComponent},
   {path: 'coupons', component: CouponListComponent},
   {path: 'companies', component: CompanyListComponent},
   {path: 'customers', component: CustomerListComponent},
+  {path: 'coupons/:id', component: CouponComponent},
+  {path: 'companies/:id', component: CompanyComponent},
+  {path: 'customers/:id', component: CustomerComponent},
   {path: 'register', component: RegisterComponent},
   {path: 'login', component: LoginComponent},
   {path: '',   redirectTo: 'home', pathMatch: 'full'},

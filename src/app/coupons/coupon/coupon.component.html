@@ -1,3 +1,14 @@
-<p>
-  coupon works!
-</p>
+<div *ngIf="coupon" class="card">
+  <div class="card-header">
+    <h2>{{ coupon.couponTitle }}</h2>
+  </div>
+  <div class="card-body">
+    <img src="{{coupon.couponImage}}">
+    <p>Coupon Type: {{ coupon.couponType}}</p>
+    <p>Start Date: {{ coupon.couponStartDate | date: "dd, MMMM, yyyy" }}</p>
+    <p>End Date: {{ coupon.couponEndDate | date: "dd, MMMM, yyyy" }}</p>
+    <p>Price: {{ coupon.couponPrice | currency:'ILS' : TRUE}}</p>
+    <p>Amount Available: {{ coupon.couponAmount}}</p>
+    <p>{{ coupon.couponMessage}}</p>
+  </div>
+</div>

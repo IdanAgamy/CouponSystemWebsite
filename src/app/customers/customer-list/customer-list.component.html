@@ -1,14 +1,17 @@
 <div>
   <div><h2>All Customers</h2></div>
-  <div>
+  <div *ngIf="customers">
     <table class="table table-bordered table-hover table-striped">
       <tr>
         <th scope="col">Customer Name</th>
         <th scope="col">Customer E-Mail</th>
       </tr>
-      <tr routerLink="/login">
-        <td>Patric</td>
-        <td>ncc@enterprize</td>
+      <tr
+        *ngFor="let customer of customers"
+        routerLink="/customers/{{ customer.customerId }}"
+      >
+        <td>{{ customer.customerName }}</td>
+        <td>{{ customer.customerEmail }}</td>
       </tr>
     </table>
   </div>

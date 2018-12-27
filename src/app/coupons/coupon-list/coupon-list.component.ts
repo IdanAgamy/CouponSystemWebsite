@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Coupon } from 'src/app/Models/coupon';
+import { CouponService } from 'src/app/services/coupon.service';
 
 @Component({
   selector: 'app-coupon-list',
@@ -7,9 +9,14 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CouponListComponent implements OnInit {
 
-  constructor() { }
+  public coupons: Coupon[];
+
+  constructor(private couponServ: CouponService) { }
 
   ngOnInit() {
+    // tslint:disable-next-line:prefer-const
+    let ob = this.couponServ.getAllCoupons();
+    ob.subscribe(comps => this.coupons = comps);
   }
 
 }

@@ -1,22 +1,6 @@
 <div>
   <h2>All Coupons</h2>
-  <div>
-    <table class="table table-bordered table-hover table-striped"
-    id="wrapper">
-      <tr>
-        <th scope="col">Coupon Name</th>
-        <th scope="col">Coupon Start Date</th>
-        <th scope="col">Coupon End Date</th>
-        <th scope="col">Coupon Type</th>
-        <th scope="col">Coupon Price</th>
-      </tr>
-      <tr routerLink="/login">
-        <td>Discount in All Meat</td>
-        <td>10.10.2018</td>
-        <td>10.10.2019</td>
-        <td>Food</td>
-        <td>66$</td>
-      </tr>
-    </table>
+  <div *ngIf="coupons">
+    <app-coupon-table [coupons]="coupons"></app-coupon-table>
   </div>
 </div>

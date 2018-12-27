@@ -1,17 +1,14 @@
-<section  class="card">
-  <header  class="card-header">
-    <app-header></app-header>
-  </header>
+<section class="card">
+  <header class="card-header"><app-header></app-header></header>
 
   <main class="container">
     <router-outlet></router-outlet>
+    <div class="massege" *ngIf="false">
+      <app-error-alert errorMassege="hello"></app-error-alert>
+    </div>
   </main>
 
-  <aside class="container">
-    <app-profile-menue></app-profile-menue>
-  </aside>
+  <aside class="container"><app-profile-menue></app-profile-menue></aside>
 
-  <footer class="card-footer">
-    <app-footer></app-footer>
-  </footer>
+  <footer class="card-footer"><app-footer></app-footer></footer>
 </section>

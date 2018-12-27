@@ -1,3 +1,15 @@
-<p>
-  company works!
-</p>
+<div *ngIf="company" class="card">
+  <div class="card-header">
+    <h2>{{ company.companyName }}</h2>
+  </div>
+  <div class="card-body">Email: {{ company.companyEmail }}</div>
+  <div *ngIf="coupons">
+    <h3>Active coupons of {{ company.companyName }}</h3>
+    <div *ngIf="coupons">
+      <app-coupon-table [coupons]="coupons"></app-coupon-table>
+    </div>
+  </div>
+  <div *ngIf="!coupons">
+    <h3>{{ company.companyName }} has no active coupons.</h3>
+  </div>
+</div>

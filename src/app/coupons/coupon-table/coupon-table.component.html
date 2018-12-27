@@ -1,0 +1,24 @@
+<div>
+    <table
+      class="table table-bordered table-hover table-striped"
+      id="wrapper"
+    >
+      <tr>
+        <th scope="col">Coupon Name</th>
+        <th scope="col">Coupon Start Date</th>
+        <th scope="col">Coupon End Date</th>
+        <th scope="col">Coupon Type</th>
+        <th scope="col">Coupon Price</th>
+      </tr>
+      <tr
+        *ngFor="let coupon of coupons"
+        routerLink="/coupons/{{ coupon.couponId }}"
+      >
+        <td>{{ coupon.couponTitle }}</td>
+        <td>{{ coupon.couponStartDate }}</td>
+        <td>{{ coupon.couponEndDate }}</td>
+        <td>{{ coupon.couponType }}</td>
+        <td>{{ coupon.couponPrice  | currency:'ILS' : TRUE }}</td>
+      </tr>
+    </table>
+  </div>
