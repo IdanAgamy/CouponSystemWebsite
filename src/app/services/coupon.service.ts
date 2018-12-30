@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Coupon } from '../Models/coupon';
 
@@ -26,9 +26,21 @@ export class CouponService {
     return this.http.get<Coupon[]>('http://localhost:8080/CouponManagmentSystemVer3/coupons/byCompanyID?companyID=' + companyID);
     // catchError(this.handleError)
   }
+  // TODO- remove header and parameter.
+  public getAllCouponyByCustomerID(customerID: number): Observable<Coupon[]> {
 
-  public getAllCouponyByCustomerID(): Observable<Coupon[]> {
-    return this.http.get<Coupon[]>('http://localhost:8080/CouponManagmentSystemVer3/coupons/purchasedCoupons');
+    const headerDict = {
+      'Content-Type': 'application/json',
+      'Accept': 'application/json',
+      'Access-Control-Allow-Headers': 'Content-Type',
+      'userType': 'CUSTOMER',
+      'userID': customerID.toString(),
+    };
+
+    const requestOptions = {
+      headers: new HttpHeaders(headerDict),
+    };
+    return this.http.get<Coupon[]>('http://localhost:8080/CouponManagmentSystemVer3/coupons/purchasedCoupons', requestOptions);
     // catchError(this.handleError)
   }
 }
