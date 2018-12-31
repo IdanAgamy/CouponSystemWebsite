@@ -8,12 +8,18 @@ import { Company } from '../Models/company';
 })
 export class CompanyService {
 
+  private url = 'http://localhost:8080/CouponManagmentSystemVer3/companies';
+
   constructor(private http: HttpClient) { }
 
 
+  creatCompany(company: Company): Observable<Company> {
+    alert('asdasd');
+    throw this.http.post<Company>(this.url, company);
+  }
 
   public getAllCompanies(): Observable<Company[]> {
-    return this.http.get<Company[]>('http://localhost:8080/CouponManagmentSystemVer3/companies');
+    return this.http.get<Company[]>(this.url);
     // catchError(this.handleError)
     // );
   }

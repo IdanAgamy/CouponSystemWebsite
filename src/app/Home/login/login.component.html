@@ -1,12 +1,40 @@
-
-  <button (click)="UserGoodLogin()">successfull login</button>
-  <button (click)="UserBadLogin()">failed login</button>
-  <div *ngIf="testUser">
-    <p>{{ testUser.email }}</p>
-    <p>{{ testUser.name }}</p>
-    <p>{{ testUser.password }}</p>
-    <p>{{ testUser.userID }}</p>
-    <p>{{ testUser.userType }}</p>
-  </div>
+<div class="container">
+  <form #myForm="ngForm" (ngSubmit)="login()">
+    <div class="form-group">
+      <label for="userName">User Name</label>
+      <input class="form-control" id="userName" #name="ngModel" required type="text" name="name" [(ngModel)]="user.name" placeholder="Name..."/>
+    </div>
+    <br />
+    <div class="form-group">
+      <label class="conrol-label">Email</label>
+      <input class="form-control" #email="ngModel" required type="text" name="email" [(ngModel)]="user.email"  placeholder="Email..."/>
+    </div>
+    <br />
+    <div class="form-group">
+        <label class="conrol-label">Password</label>
+      <input class="form-control" #password="ngModel" required type="password" name="password" [(ngModel)]="user.password" placeholder="Password..."/>
+    </div>
+    <br />
+    <div class="form-check">
+      <input class="form-check-input" type="radio" name="userType" value="COMPANY" checked [(ngModel)]="user.userType"/>
+      <label class="form-check-label">
+        Company
+      </label>
+    </div>
+    <div class="form-check">
+      <input class="form-check-input" type="radio" name="userType" value="CUSTOMER" [(ngModel)]="user.userType"/>
+      <label class="form-check-label">
+        Customrt
+      </label>
+    </div>
+    <div class="form-check">
+      <input class="form-check-input" type="radio" name="userType" value="ADMIN" [(ngModel)]="user.userType" />
+      <label class="form-check-label">
+        Admin
+      </label>
+    </div>
+    <button type="submit" class="btn btn-primary" [disabled]="myForm.form.invalid">Login</button>
+  </form>
+</div>
 
 

@@ -1,5 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { FormsModule } from '@angular/forms';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -10,7 +11,7 @@ import { ProfileMenueComponent } from './Home/profile-menue/profile-menue.compon
 import { HomeComponent } from './Home/home/home.component';
 import { Page404Component } from './Home/page404/page404.component';
 import { RegisterComponent } from './Home/register/register.component';
-import { LoginComponent } from './Home/login/login.component';
+import { AuthenticationComponent } from './Home/login/login.component';
 import { HttpClientModule } from '@angular/common/http';
 import { CommonModule } from '@angular/common';
 import { CustomerComponent } from './customers/customer/customer.component';
@@ -38,7 +39,7 @@ import { CouponTableComponent } from './coupons/coupon-table/coupon-table.compon
     CouponListComponent,
     CompanyComponent,
     CompanyListComponent,
-    LoginComponent,
+    AuthenticationComponent,
     ErrorAlertComponent,
     CouponTableComponent
   ],
@@ -46,7 +47,7 @@ import { CouponTableComponent } from './coupons/coupon-table/coupon-table.compon
     BrowserModule,
     CommonModule,
     AppRoutingModule,
-
+    FormsModule,
     HttpClientModule
   ],
   providers: [],

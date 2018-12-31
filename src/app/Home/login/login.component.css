@@ -1,7 +1,13 @@
-div {
-margin: 10%;
+h3 {
+  text-align: left;
+  font-size: 10px;
 }
 
 .massege{
   padding:25%;
 }
+
+@media (min-width: 600px) {div.container {
+  padding-left: 100px;
+  padding-right: 100px;
+}}

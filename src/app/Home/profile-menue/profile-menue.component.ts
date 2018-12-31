@@ -7,10 +7,19 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ProfileMenueComponent implements OnInit {
 
-  public logedin = false;
+  // public logedin = false;
   constructor() { }
 
   ngOnInit() {
+  }
+
+  isLogedin(): boolean {
+    return !!localStorage.getItem('loggedin');
+  }
+
+  logOut() {
+    localStorage.removeItem('loggedin');
+    console.log('loggedin token deleted');
   }
 
 }

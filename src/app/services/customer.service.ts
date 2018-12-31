@@ -8,10 +8,16 @@ import { Customer } from '../Models/customer';
 })
 export class CustomerService {
 
+  private url = 'http://localhost:8080/CouponManagmentSystemVer3/customers';
+
   constructor(private http: HttpClient) { }
 
+  creatCustomer(customer: Customer): Observable<Customer> {
+    return this.http.post<Customer>(this.url, customer);
+  }
+
   public getAllCustomers(): Observable<Customer[]> {
-    return this.http.get<Customer[]>('http://localhost:8080/CouponManagmentSystemVer3/customers');
+    return this.http.get<Customer[]>(this.url);
     // catchError(this.handleError)
     // );
   }
@@ -29,7 +35,7 @@ export class CustomerService {
     const requestOptions = {
       headers: new HttpHeaders(headerDict),
     };
-    return this.http.get<Customer>('http://localhost:8080/CouponManagmentSystemVer3/customers/' + customerID, requestOptions);
+    return this.http.get<Customer>(this.url + customerID, requestOptions);
     // catchError(this.handleError)
     // );
   }
