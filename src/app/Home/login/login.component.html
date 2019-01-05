@@ -35,6 +35,10 @@
     </div>
     <button type="submit" class="btn btn-primary" [disabled]="myForm.form.invalid">Login</button>
   </form>
+{{ user | json}}
 </div>
+
+<button (click)="fillUser()">fill user</button>
+
 
 

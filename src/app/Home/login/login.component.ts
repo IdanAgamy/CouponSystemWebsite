@@ -12,7 +12,7 @@ export class AuthenticationComponent implements OnInit {
 
 
   public msg: string;
-  public user: UserLogin = new  UserLogin(1, 'patric', 'a@b', 'asdss234', 'CUSTOMER');
+  public user: UserLogin = new  UserLogin(); // 1, 'patric', 'a@b', 'asdss234', 'CUSTOMER'
   constructor(private service: LoginService,
               private router: Router) { }
 
@@ -50,6 +50,10 @@ export class AuthenticationComponent implements OnInit {
         this.msg = 'something wrong with server';
     }
     });
+  }
+
+  public fillUser() {
+    this.user = new  UserLogin(1, 'patric', 'a@b', 'asdss234', 'CUSTOMER'); //
   }
 
 }

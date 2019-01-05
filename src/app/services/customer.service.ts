@@ -35,7 +35,7 @@ export class CustomerService {
     const requestOptions = {
       headers: new HttpHeaders(headerDict),
     };
-    return this.http.get<Customer>(this.url + customerID, requestOptions);
+    return this.http.get<Customer>(this.url + '/' + customerID, { withCredentials: true });
     // catchError(this.handleError)
     // );
   }

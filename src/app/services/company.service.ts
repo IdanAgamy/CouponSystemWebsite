@@ -14,8 +14,7 @@ export class CompanyService {
 
 
   creatCompany(company: Company): Observable<Company> {
-    alert('asdasd');
-    throw this.http.post<Company>(this.url, company);
+    return this.http.post<Company>(this.url, company);
   }
 
   public getAllCompanies(): Observable<Company[]> {

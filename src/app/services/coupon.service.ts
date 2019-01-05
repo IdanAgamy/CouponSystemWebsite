@@ -11,19 +11,20 @@ export class CouponService {
   constructor(private http: HttpClient) { }
 
   public getAllCoupons(): Observable<Coupon[]> {
-    return this.http.get<Coupon[]>('http://localhost:8080/CouponManagmentSystemVer3/coupons');
+    return this.http.get<Coupon[]>('http://localhost:8080/CouponManagmentSystemVer3/coupons', { withCredentials: true });
     // catchError(this.handleError)
     // );
   }
 
   public getCouponByCouponID(couponID: number): Observable<Coupon> {
-    return this.http.get<Coupon>('http://localhost:8080/CouponManagmentSystemVer3/coupons/' + couponID);
+    return this.http.get<Coupon>('http://localhost:8080/CouponManagmentSystemVer3/coupons/' + couponID, { withCredentials: true });
     // catchError(this.handleError)
     // );
   }
 
   public getAllCouponyByCompanyID(companyID: number): Observable<Coupon[]> {
-    return this.http.get<Coupon[]>('http://localhost:8080/CouponManagmentSystemVer3/coupons/byCompanyID?companyID=' + companyID);
+    // tslint:disable-next-line:max-line-length
+    return this.http.get<Coupon[]>('http://localhost:8080/CouponManagmentSystemVer3/coupons/byCompanyID?companyID=' + companyID, { withCredentials: true });
     // catchError(this.handleError)
   }
   // TODO- remove header and parameter.
