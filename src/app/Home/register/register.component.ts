@@ -4,6 +4,7 @@ import { CustomerService } from 'src/app/services/customer.service';
 import { CompanyService } from 'src/app/services/company.service';
 import { Customer } from 'src/app/Models/customer';
 import { Company } from 'src/app/Models/company';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-register',
@@ -14,7 +15,8 @@ export class RegisterComponent implements OnInit {
 
   public user: UserLogin = new UserLogin();
   constructor(private customerServ: CustomerService,
-              private companyServ: CompanyService) { }
+              private companyServ: CompanyService,
+              private router: Router) { }
 
   ngOnInit() {
   }
@@ -35,7 +37,9 @@ export class RegisterComponent implements OnInit {
     customer.customerPassword = this.user.password;
     // tslint:disable-next-line:prefer-const
     let ob = this.customerServ.creatCustomer(customer);
-    ob.subscribe(u => this.successRegister(u));
+    ob.subscribe(data => {
+      this.router.navigate(['/home']);
+    });
   }
 
   private companyRegister() {
@@ -46,11 +50,13 @@ export class RegisterComponent implements OnInit {
     company.companyPassword = this.user.password;
     // tslint:disable-next-line:prefer-const
     let ob = this.companyServ.creatCompany(company);
-    ob.subscribe(u => this.successRegister(u));
+    ob.subscribe(data => {
+      this.router.navigate(['/home']);
+    });
   }
 
   private successRegister(u: any) {
-    alert(JSON.stringify(u));
+    this.router.navigate(['/home']);
   }
 
 }

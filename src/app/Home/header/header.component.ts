@@ -12,4 +12,9 @@ export class HeaderComponent implements OnInit {
   ngOnInit() {
   }
 
+  isAdmin(): boolean {
+    const userType = localStorage.getItem('userType');
+    return userType === 'ADMIN';
+  }
+
 }

@@ -10,6 +10,7 @@ import { AuthenticationComponent } from './Home/login/login.component';
 import { CouponComponent } from './coupons/coupon/coupon.component';
 import { CompanyComponent } from './companies/company/company.component';
 import { CustomerComponent } from './customers/customer/customer.component';
+import { ProfilePageComponent } from './Home/profile-page/profile-page.component';
 
 const routes: Routes = [
   {path: 'home',     component: HomeComponent},
@@ -21,6 +22,7 @@ const routes: Routes = [
   {path: 'customers/:id', component: CustomerComponent},
   {path: 'register', component: RegisterComponent},
   {path: 'login', component: AuthenticationComponent},
+  {path: 'profile', component: ProfilePageComponent},
   {path: '',   redirectTo: 'home', pathMatch: 'full'},
   {path: '**',   component: Page404Component}
 ];

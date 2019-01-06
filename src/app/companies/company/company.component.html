@@ -6,7 +6,7 @@
   <div *ngIf="coupons">
     <h3>Active coupons of {{ company.companyName }}</h3>
     <div *ngIf="coupons">
-      <app-coupon-table [coupons]="coupons" [pageSource]="'company'"></app-coupon-table>
+      <app-coupon-table [coupons]="coupons" [pageSource]="'company'" [pageID]="companyId"></app-coupon-table>
     </div>
   </div>
   <div *ngIf="!coupons">

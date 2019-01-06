@@ -14,16 +14,17 @@ export class CompanyComponent implements OnInit {
 
   public company: Company;
   public coupons: Coupon[];
+  public companyId: number;
 
   constructor(private companyServ: CompanyService,
               private couponServ: CouponService,
               private activatedRoute: ActivatedRoute) { }
 
   ngOnInit() {
-    const companyId = parseInt(this.activatedRoute.snapshot.params.id, 10);
-    const compabyOb = this.companyServ.getCompanyByCompanyID(companyId);
+    this.companyId = parseInt(this.activatedRoute.snapshot.params.id, 10);
+    const compabyOb = this.companyServ.getCompanyByCompanyID(this.companyId);
     compabyOb.subscribe(comp => this.company = comp);
-    const couponOb = this.couponServ.getAllCouponyByCompanyID(companyId);
+    const couponOb = this.couponServ.getAllCouponyByCompanyID(this.companyId);
     couponOb.subscribe(coup => this.coupons = coup);
   }
 

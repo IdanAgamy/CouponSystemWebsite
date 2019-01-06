@@ -14,15 +14,23 @@ export class CouponTableComponent implements OnInit {
   @Input()
   public pageSource: string;
 
+  @Input()
+  public pageID: number;
+
   constructor() { }
 
   ngOnInit() {
   }
 
   public canDelete(): boolean {
+    const userType = localStorage.getItem('userType');
+    const userID = parseInt(localStorage.getItem('userID'), 10);
+
+
     return (this.pageSource === 'coupon') ||
-           (this.pageSource === 'company') ||
-           (this.pageSource === 'customer');
+           (this.pageSource === 'company' && this.pageID === userID && userType === 'COMPANY') ||
+           (this.pageSource === 'customer' && this.pageID === userID && userType === 'CUSTOMER') ||
+           (userType === 'ADMIN');
   }
 
 }

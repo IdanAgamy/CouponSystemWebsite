@@ -23,6 +23,7 @@ import { CompanyListComponent } from './companies/company-list/company-list.comp
 import { ErrorAlertComponent } from './Home/error-alert/error-alert.component';
 import { CouponTableComponent } from './coupons/coupon-table/coupon-table.component';
 import { ProfileComponent } from './users/profile/profile.component';
+import { ProfilePageComponent } from './Home/profile-page/profile-page.component';
 
 @NgModule({
   declarations: [
@@ -43,7 +44,8 @@ import { ProfileComponent } from './users/profile/profile.component';
     AuthenticationComponent,
     ErrorAlertComponent,
     CouponTableComponent,
-    ProfileComponent
+    ProfileComponent,
+    ProfilePageComponent
   ],
   imports: [
     BrowserModule,

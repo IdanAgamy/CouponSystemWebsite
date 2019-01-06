@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Company } from '../Models/company';
+import { tap } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
@@ -14,7 +15,14 @@ export class CompanyService {
 
 
   creatCompany(company: Company): Observable<Company> {
-    return this.http.post<Company>(this.url, company, { withCredentials: true });
+    return this.http.post<Company>(this.url, company, { withCredentials: true }).pipe(
+      tap(data => {
+        localStorage.setItem('userID', String(data.companyId));
+        localStorage.setItem('userName', data.companyName);
+        localStorage.setItem('userEmail', data.companyEmail);
+        localStorage.setItem('userType', 'COMPANY');
+        localStorage.setItem('loggedin', 'true'); }
+      ));
   }
 
   public getAllCompanies(): Observable<Company[]> {
