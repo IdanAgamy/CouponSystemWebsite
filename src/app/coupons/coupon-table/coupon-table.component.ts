@@ -11,9 +11,18 @@ export class CouponTableComponent implements OnInit {
   @Input()
   public coupons: Coupon;
 
+  @Input()
+  public pageSource: string;
+
   constructor() { }
 
   ngOnInit() {
+  }
+
+  public canDelete(): boolean {
+    return (this.pageSource === 'coupon') ||
+           (this.pageSource === 'company') ||
+           (this.pageSource === 'customer');
   }
 
 }

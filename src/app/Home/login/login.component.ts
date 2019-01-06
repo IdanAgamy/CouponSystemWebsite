@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { UserLogin } from 'src/app/Models/userLogger';
-import { LoginService } from 'src/app/services/login.service';
+import { AuthenticationService } from 'src/app/services/authentication.service';
 import { Router } from '@angular/router';
 
 @Component({
@@ -13,7 +13,7 @@ export class AuthenticationComponent implements OnInit {
 
   public msg: string;
   public user: UserLogin = new  UserLogin(); // 1, 'patric', 'a@b', 'asdss234', 'CUSTOMER'
-  constructor(private service: LoginService,
+  constructor(private authenticationServ: AuthenticationService,
               private router: Router) { }
 
   ngOnInit() {
@@ -35,12 +35,9 @@ export class AuthenticationComponent implements OnInit {
 
   public login() {
     // tslint:disable-next-line:prefer-const
-    let ob = this.service.login(this.user);
+    let ob = this.authenticationServ.login(this.user);
     // tslint:disable-next-line:prefer-const
-    ob.subscribe(u => {
-      this.msg = null;
-      localStorage.setItem('user', JSON.stringify(u));
-      localStorage.setItem('loggedin', 'true');
+    ob.subscribe(data => {
       this.router.navigate(['/home']);
     },
     error => {
@@ -52,8 +49,16 @@ export class AuthenticationComponent implements OnInit {
     });
   }
 
-  public fillUser() {
+  public fillCustomer() {
     this.user = new  UserLogin(1, 'patric', 'a@b', 'asdss234', 'CUSTOMER'); //
+  }
+
+  public fillCompany() {
+    this.user = new  UserLogin(1, 'BBB', 'BBB@gmail.com', '1234bBBb', 'COMPANY'); //
+  }
+
+  public fillAdmin() {
+    this.user = new  UserLogin(1, 'admin', 'admin@coupons', '1234', 'ADMIN'); //
   }
 
 }

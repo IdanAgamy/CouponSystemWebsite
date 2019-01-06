@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { AuthenticationService } from 'src/app/services/authentication.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-profile-menue',
@@ -8,7 +10,8 @@ import { Component, OnInit } from '@angular/core';
 export class ProfileMenueComponent implements OnInit {
 
   // public logedin = false;
-  constructor() { }
+  constructor(private authenticationServ: AuthenticationService,
+              private router: Router) { }
 
   ngOnInit() {
   }
@@ -18,8 +21,10 @@ export class ProfileMenueComponent implements OnInit {
   }
 
   logOut() {
-    localStorage.removeItem('loggedin');
-    console.log('loggedin token deleted');
+    let ob = this.authenticationServ.logout();
+    ob.subscribe(data => {
+      this.router.navigate(['/home']);
+    });
   }
 
 }

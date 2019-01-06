@@ -22,6 +22,7 @@ import { CompanyComponent } from './companies/company/company.component';
 import { CompanyListComponent } from './companies/company-list/company-list.component';
 import { ErrorAlertComponent } from './Home/error-alert/error-alert.component';
 import { CouponTableComponent } from './coupons/coupon-table/coupon-table.component';
+import { ProfileComponent } from './users/profile/profile.component';
 
 @NgModule({
   declarations: [
@@ -41,7 +42,8 @@ import { CouponTableComponent } from './coupons/coupon-table/coupon-table.compon
     CompanyListComponent,
     AuthenticationComponent,
     ErrorAlertComponent,
-    CouponTableComponent
+    CouponTableComponent,
+    ProfileComponent
   ],
   imports: [
     BrowserModule,

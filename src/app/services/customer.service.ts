@@ -13,28 +13,17 @@ export class CustomerService {
   constructor(private http: HttpClient) { }
 
   creatCustomer(customer: Customer): Observable<Customer> {
-    return this.http.post<Customer>(this.url, customer);
+    return this.http.post<Customer>(this.url, customer, { withCredentials: true });
   }
 
   public getAllCustomers(): Observable<Customer[]> {
-    return this.http.get<Customer[]>(this.url);
+    return this.http.get<Customer[]>(this.url, { withCredentials: true });
     // catchError(this.handleError)
     // );
   }
 
   // TODO- remove header
   public getCustomerIDByCustomerID(customerID: number): Observable<Customer> {
-    const headerDict = {
-      'Content-Type': 'application/json',
-      'Accept': 'application/json',
-      'Access-Control-Allow-Headers': 'Content-Type',
-      'userType': 'CUSTOMER',
-      'userID': customerID.toString(),
-    };
-
-    const requestOptions = {
-      headers: new HttpHeaders(headerDict),
-    };
     return this.http.get<Customer>(this.url + '/' + customerID, { withCredentials: true });
     // catchError(this.handleError)
     // );

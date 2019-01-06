@@ -7,15 +7,30 @@ import { map, catchError, tap } from 'rxjs/operators';
 @Injectable({
   providedIn: 'root'
 })
-export class LoginService {
+export class AuthenticationService {
+
 
   constructor(private http: HttpClient) { }
 
   public login(user: UserLogin): Observable<UserLogin> {
     // tslint:disable-next-line:max-line-length
-    return this.http.post<UserLogin>('http://localhost:8080/CouponManagmentSystemVer3/login', user, { withCredentials: true });
+    return this.http.post<UserLogin>('http://localhost:8080/CouponManagmentSystemVer3/login', user, { withCredentials: true }).pipe(
+      tap(userInfo => {
+          localStorage.setItem('userID', String(userInfo.userID));
+          localStorage.setItem('userName', userInfo.name);
+          localStorage.setItem('userEmail', userInfo.email);
+          localStorage.setItem('userType', userInfo.userType);
+          localStorage.setItem('loggedin', 'true'); }
+          )) ;
     // catchError(this.handleError)
     // );
+  }
+
+  public logout(): Observable<UserLogin> {
+    return this.http.get<UserLogin>('http://localhost:8080/CouponManagmentSystemVer3/login/logout',  { withCredentials: true }).pipe(
+      tap(data => {
+          localStorage.clear(); }
+      ));
   }
 
   private handleError(error: HttpErrorResponse) {

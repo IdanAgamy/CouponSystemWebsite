@@ -14,17 +14,17 @@ export class CompanyService {
 
 
   creatCompany(company: Company): Observable<Company> {
-    return this.http.post<Company>(this.url, company);
+    return this.http.post<Company>(this.url, company, { withCredentials: true });
   }
 
   public getAllCompanies(): Observable<Company[]> {
-    return this.http.get<Company[]>(this.url);
+    return this.http.get<Company[]>(this.url, { withCredentials: true });
     // catchError(this.handleError)
     // );
   }
 
   public getCompanyByCompanyID(companyID: number): Observable<Company> {
-    return this.http.get<Company>('http://localhost:8080/CouponManagmentSystemVer3/companies/' + companyID);
+    return this.http.get<Company>(this.url + '/' + companyID, { withCredentials: true });
     // catchError(this.handleError)
     // );
   }
