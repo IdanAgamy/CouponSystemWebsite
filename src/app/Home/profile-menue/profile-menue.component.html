@@ -14,7 +14,7 @@
   <br>
   Welcome User!
   <br><br>
-  <button type="button" class="btn btn-primary"  routerLink="profile">Profile</button>
+  <button type="button" class="btn btn-primary"  routerLink="profile" *ngIf="!isAdmin()">Profile</button>
   <br>
   <button type="button" class="btn btn-primary" (click)="logOut()">Log out</button>
 </div>

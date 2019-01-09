@@ -19,7 +19,13 @@
         <td>{{ coupon.couponEndDate }}</td>
         <td>{{ coupon.couponType }}</td>
         <td>{{ coupon.couponPrice  | currency:'ILS' : TRUE }}</td>
-        <td><button *ngIf="canDelete()">Delete</button></td>
+        <td *ngIf="canChange()">
+          <button>Delete</button>
+          <button>Update</button>
+        </td>
+        <td *ngIf="isCustomer()">
+            <button>Cancell Purchase</button>
+          </td>
       </tr>
     </table>
   </div>

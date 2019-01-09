@@ -1,12 +1,14 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpErrorResponse } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Coupon } from '../Models/coupon';
+import { catchError } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
 })
 export class CouponService {
+
 
   private url = 'http://localhost:8080/CouponManagmentSystemVer3/coupons';
 
@@ -30,8 +32,19 @@ export class CouponService {
     // catchError(this.handleError)
   }
   // TODO- remove header and parameter.
-  public getAllCouponyByCustomerID(customerID: number): Observable<Coupon[]> {
+  public getAllCouponyByCustomerID(): Observable<Coupon[]> {
     return this.http.get<Coupon[]>(this.url + '/purchasedCoupons', { withCredentials: true });
     // catchError(this.handleError)
+  }
+
+  createCoupon(coupon: Coupon): Observable<Coupon> {
+    alert(JSON.stringify(coupon));
+    return this.http.post<Coupon>(this.url, coupon, { withCredentials: true }).pipe();
+      // catchError(this.handleError));
+    }
+
+
+      public handleError(error: HttpErrorResponse) {
+        console.log(JSON.stringify(error));
   }
 }

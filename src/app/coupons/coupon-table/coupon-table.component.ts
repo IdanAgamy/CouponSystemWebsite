@@ -22,15 +22,21 @@ export class CouponTableComponent implements OnInit {
   ngOnInit() {
   }
 
-  public canDelete(): boolean {
+  public canChange(): boolean {
     const userType = localStorage.getItem('userType');
     const userID = parseInt(localStorage.getItem('userID'), 10);
 
 
-    return (this.pageSource === 'coupon') ||
-           (this.pageSource === 'company' && this.pageID === userID && userType === 'COMPANY') ||
-           (this.pageSource === 'customer' && this.pageID === userID && userType === 'CUSTOMER') ||
+    return (this.pageSource === 'company' && this.pageID === userID && userType === 'COMPANY') ||
+          //  (this.pageSource === 'customer' && this.pageID === userID && userType === 'CUSTOMER') ||
+          // (this.pageSource === 'coupon') ||
            (userType === 'ADMIN');
+  }
+
+  public isCustomer(): boolean {
+    const userType = localStorage.getItem('userType');
+    const userID = parseInt(localStorage.getItem('userID'), 10);
+    return this.pageSource === 'customer' && this.pageID === userID && userType === 'CUSTOMER';
   }
 
 }

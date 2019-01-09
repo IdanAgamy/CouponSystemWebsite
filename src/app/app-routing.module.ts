@@ -11,6 +11,7 @@ import { CouponComponent } from './coupons/coupon/coupon.component';
 import { CompanyComponent } from './companies/company/company.component';
 import { CustomerComponent } from './customers/customer/customer.component';
 import { ProfilePageComponent } from './Home/profile-page/profile-page.component';
+import { CreatCouponComponent } from './coupons/creat-coupon/creat-coupon.component';
 
 const routes: Routes = [
   {path: 'home',     component: HomeComponent},
@@ -23,6 +24,7 @@ const routes: Routes = [
   {path: 'register', component: RegisterComponent},
   {path: 'login', component: AuthenticationComponent},
   {path: 'profile', component: ProfilePageComponent},
+  {path: 'createCoupon', component: CreatCouponComponent},
   {path: '',   redirectTo: 'home', pathMatch: 'full'},
   {path: '**',   component: Page404Component}
 ];

@@ -41,6 +41,7 @@ export class AuthenticationComponent implements OnInit {
       this.router.navigate(['/home']);
     },
     error => {
+      alert(JSON.stringify(error));
       if (error.status === 401) {
         this.msg = 'wrong user name or password';
       } else {

@@ -23,7 +23,7 @@ export class CustomerComponent implements OnInit {
       const customerId = parseInt(this.activatedRoute.snapshot.params.id, 10);
       const customerOb = this.customerServ.getCustomerIDByCustomerID(customerId);
       customerOb.subscribe(cust => this.customer = cust);
-      const couponOb = this.couponServ.getAllCouponyByCustomerID(customerId);
+      const couponOb = this.couponServ.getAllCouponyByCustomerID();
       couponOb.subscribe(coup => this.coupons = coup);
     }
 

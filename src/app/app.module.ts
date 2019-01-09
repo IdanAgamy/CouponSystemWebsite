@@ -24,6 +24,8 @@ import { ErrorAlertComponent } from './Home/error-alert/error-alert.component';
 import { CouponTableComponent } from './coupons/coupon-table/coupon-table.component';
 import { ProfileComponent } from './users/profile/profile.component';
 import { ProfilePageComponent } from './Home/profile-page/profile-page.component';
+import { CreatCouponComponent } from './coupons/creat-coupon/creat-coupon.component';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 @NgModule({
   declarations: [
@@ -45,14 +47,16 @@ import { ProfilePageComponent } from './Home/profile-page/profile-page.component
     ErrorAlertComponent,
     CouponTableComponent,
     ProfileComponent,
-    ProfilePageComponent
+    ProfilePageComponent,
+    CreatCouponComponent
   ],
   imports: [
     BrowserModule,
     CommonModule,
     AppRoutingModule,
     FormsModule,
-    HttpClientModule
+    HttpClientModule,
+    NgbModule
   ],
   providers: [],
   bootstrap: [LayoutComponent]

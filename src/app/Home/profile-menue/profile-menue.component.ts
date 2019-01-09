@@ -21,10 +21,16 @@ export class ProfileMenueComponent implements OnInit {
   }
 
   logOut() {
-    let ob = this.authenticationServ.logout();
+    const ob = this.authenticationServ.logout();
     ob.subscribe(data => {
       this.router.navigate(['/home']);
     });
+
+  }
+
+  public isAdmin(): Boolean {
+    const userType = localStorage.getItem('userType');
+    return userType === 'ADMIN';
   }
 
 }
