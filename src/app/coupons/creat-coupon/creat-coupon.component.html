@@ -1,35 +1,66 @@
-<div  class="container">
+<div class="container">
   <form #createCouponForm="ngForm" (ngSubmit)="createCoupon()">
     <div class="form-group">
       <label for="title">Coupon Title</label>
-      <input class="form-control" id="userName" #name="ngModel" required type="text" name="title" [(ngModel)]="coupon.couponTitle" placeholder="Coupon Title..."/>
+      <input
+        class="form-control"
+        id="couponTitle"
+        #name="ngModel"
+        required
+        type="text"
+        name="title"
+        [(ngModel)]="coupon.couponTitle"
+        placeholder="Coupon Title..."
+      />
     </div>
 
+    <div class="input-group">
+      <label>Coupon Start Date </label> <br />
+      <input
+        class="form-control"
+        placeholder="yyyy-mm-dd"
+        [minDate]="today"
+        name="startDate"
+        [(ngModel)]="startDate"
+        ngbDatepicker
+        #ds="ngbDatepicker"
+      />
+      <div class="input-group-append">
+        <button
+          class="btn btn-outline-secondary calendar"
+          (click)="ds.toggle()"
+          type="button"
+        ></button>
+      </div>
+    </div>
+    <br />
+    <div class="input-group">
+      <label>Coupon End Date </label> <br />
+      <input
+        class="form-control"
+        placeholder="yyyy-mm-dd"
+        [minDate]="startDate"
+        name="endDate"
+        [(ngModel)]="endDate"
+        ngbDatepicker
+        #de="ngbDatepicker"
+      />
+      <div class="input-group-append">
+        <button
+          class="btn btn-outline-secondary calendar"
+          (click)="de.toggle()"
+          type="button"
+        ></button>
+      </div>
+    </div>
 
-        <div class="input-group">
-            <label>Coupon Start Date</label><br>
-            <input class="form-control" placeholder="dd-mm-yyyy"
-                   name="startDate" [(ngModel)]="startDate" ngbDatepicker #d="ngbDatepicker">
-            <div class="input-group-append">
-              <button class="btn btn-outline-secondary calendar" (click)="d.toggle()" type="button"></button>
-            </div>
-          </div>
+    <div class="form-group">
+      <label for="amount">Coupon Amount</label>
+      <input class="form-control" id="couponAmount" #amount="ngModel" required type="number" name="amount" [(ngModel)]="coupon.couponAmount" placeholder="0"/>
+    </div>
 
-          <div class="input-group">
-              <label>Coupon End Date</label><br>
-              <input class="form-control" placeholder="dd-mm-yyyy"
-                     name="endDate" [(ngModel)]="endDate" ngbDatepicker #d="ngbDatepicker">
-              <div class="input-group-append">
-                <button class="btn btn-outline-secondary calendar" (click)="d.toggle()" type="button"></button>
-              </div>
-            </div>
-
-            <button>create</button>
+    <button>create</button>
   </form>
 </div>
 
-{{ coupon | json}}<br>
-start date: {{ startDate |json}}<br><br>
-end date: {{endDate|json}}
-
-{{ createCouponForm | json }}
+<!-- {{ createCouponForm | json }} -->
