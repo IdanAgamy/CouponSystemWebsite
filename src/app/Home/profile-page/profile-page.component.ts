@@ -47,7 +47,11 @@ export class ProfilePageComponent implements OnInit {
     }
   }
   public updateAcc() {
-
+    if (this.user.userType === 'CUSTOMER') {
+      this.router.navigate(['/customers/update/' + this.user.userID]);
+    } else if (this.user.userType === 'COMPANY') {
+      this.router.navigate(['/companies/update/' + this.user.userID]);
+    }
   }
 
   public deleteAcc() {

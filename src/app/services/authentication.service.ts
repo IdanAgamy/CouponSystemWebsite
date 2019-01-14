@@ -3,6 +3,7 @@ import { Observable, throwError } from 'rxjs';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { UserLogin } from '../Models/userLogger';
 import { map, catchError, tap } from 'rxjs/operators';
+import { ErrorService } from './error.service';
 
 @Injectable({
   providedIn: 'root'
@@ -10,7 +11,7 @@ import { map, catchError, tap } from 'rxjs/operators';
 export class AuthenticationService {
 
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient, private errorServ: ErrorService) { }
 
   public login(user: UserLogin): Observable<UserLogin> {
     // tslint:disable-next-line:max-line-length
@@ -21,16 +22,14 @@ export class AuthenticationService {
           localStorage.setItem('userEmail', userInfo.email);
           localStorage.setItem('userType', userInfo.userType);
           localStorage.setItem('loggedin', 'true'); }
-          )) ;
-    // catchError(this.handleError)
-    // );
+          ), catchError(this.errorServ.errorHandler)) ;
   }
 
   public logout(): Observable<UserLogin> {
     return this.http.get<UserLogin>('http://localhost:8080/CouponManagmentSystemVer3/login/logout',  { withCredentials: true }).pipe(
       tap(data => {
           localStorage.clear(); }
-      ));
+      ), catchError(this.errorServ.errorHandler));
   }
 
   private handleError(error: HttpErrorResponse) {
@@ -51,10 +50,5 @@ export class AuthenticationService {
     // return an observable with a user-facing error message
     return throwError(
       'Something bad happened; please try again later.');
-  }
-
-  private something(msg: UserLogin): UserLogin {
-    alert(JSON.stringify(msg));
-    return new UserLogin(1, 'aa', 'aa', 'aa', 'aa');
   }
 }

@@ -2,8 +2,9 @@
   <h2>Welcome to {{title}}</h2>
 </div>
 
-<div>
+<div *ngIf="coupons">
   <h3>Here are the newest coupon in this site</h3>
+  <app-coupon-table [coupons]="coupons" [pageSource]="'home'"></app-coupon-table>
 </div>
 
 

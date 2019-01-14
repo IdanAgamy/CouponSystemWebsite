@@ -2,7 +2,8 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Company } from '../Models/company';
-import { tap } from 'rxjs/operators';
+import { tap, catchError } from 'rxjs/operators';
+import { ErrorService } from './error.service';
 
 @Injectable({
   providedIn: 'root'
@@ -11,7 +12,7 @@ export class CompanyService {
 
   private url = 'http://localhost:8080/CouponManagmentSystemVer3/companies';
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient, private errorServ: ErrorService) { }
 
 
   creatCompany(company: Company): Observable<Company> {
@@ -22,28 +23,29 @@ export class CompanyService {
         localStorage.setItem('userEmail', data.companyEmail);
         localStorage.setItem('userType', 'COMPANY');
         localStorage.setItem('loggedin', 'true'); }
-      ));
+      ), catchError(this.errorServ.errorHandler));
   }
 
   public getAllCompanies(): Observable<Company[]> {
-    return this.http.get<Company[]>(this.url, { withCredentials: true });
-    // catchError(this.handleError)
-    // );
+    return this.http.get<Company[]>(this.url, { withCredentials: true }).pipe(
+      catchError(this.errorServ.errorHandler));
   }
 
   public getCompanyByCompanyID(companyID: number): Observable<Company> {
-    return this.http.get<Company>(this.url + '/' + companyID, { withCredentials: true });
+    return this.http.get<Company>(this.url + '/' + companyID, { withCredentials: true }).pipe(
+      catchError(this.errorServ.errorHandler));
     // catchError(this.handleError)
     // );
   }
 
   public updateCompany(company: Company): Observable<Company> {
-    return this.http.put<Company>(this.url, company, { withCredentials: true });
+    return this.http.put<Company>(this.url, company, { withCredentials: true }).pipe(
+      catchError(this.errorServ.errorHandler));
   }
 
   public deleteCompany(companyID: number): Observable<Company> {
     return this.http.delete<Company>(this.url + '/' + companyID,  { withCredentials: true }).pipe(
-      tap(data => localStorage.clear())
+      tap(data => localStorage.clear()), catchError(this.errorServ.errorHandler)
     );
   }
 }

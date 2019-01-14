@@ -28,7 +28,7 @@ import { CreatCouponComponent } from './coupons/creat-coupon/creat-coupon.compon
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { UpdateCouponComponent } from './coupons/update-coupon/update-coupon.component';
 import { UpdateCompanyComponent } from './companies/update-company/update-company.component';
-import { UpdateCustomerComponent } from './customer/update-customer/update-customer.component';
+import { UpdateCustomerComponent } from './customers/update-customer/update-customer.component';
 
 @NgModule({
   declarations: [

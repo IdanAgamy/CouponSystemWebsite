@@ -21,7 +21,7 @@
         <td routerLink="/coupons/{{ coupon.couponId }}">{{ coupon.couponPrice  | currency:'ILS' : true }}</td>
         <td *ngIf="canChange()">
           <button (click)="delteCoupon(coupon.couponId)">Delete</button>
-          <button (click)="updateCoupon(coupon.couponId)">Update</button>
+          <button routerLink="/coupons/update/{{ coupon.couponId }}">Update</button>
         </td>
         <td *ngIf="isCustomer()">
             <button (click)="cancellPurchase(coupon.couponId)">Cancell Purchase</button>

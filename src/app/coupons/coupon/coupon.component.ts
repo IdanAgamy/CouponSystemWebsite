@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { CouponService } from 'src/app/services/coupon.service';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Coupon } from 'src/app/Models/coupon';
 
 @Component({
@@ -11,14 +11,26 @@ import { Coupon } from 'src/app/Models/coupon';
 export class CouponComponent implements OnInit {
 
   public coupon: Coupon;
+  private couponId: number;
 
   constructor(private couponServ: CouponService,
-              private activatedRoute: ActivatedRoute ) { }
+              private activatedRoute: ActivatedRoute,
+              private router: Router ) { }
 
   ngOnInit() {
-    const couponId = parseInt(this.activatedRoute.snapshot.params.id, 10);
-    const ob = this.couponServ.getCouponByCouponID(couponId);
+    this.couponId = parseInt(this.activatedRoute.snapshot.params.id, 10);
+    const ob = this.couponServ.getCouponByCouponID(this.couponId);
     ob.subscribe(coupon => this.coupon = coupon);
+  }
+
+  public isCustomer(): boolean {
+    const userType = localStorage.getItem('userType');
+    return userType === 'CUSTOMER';
+  }
+
+  public purchase() {
+    const ob = this.couponServ.purchesCoupon(this.couponId);
+    ob.subscribe(data => this.router.navigate(['/coupons']));
   }
 
 }

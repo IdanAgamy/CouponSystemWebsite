@@ -1,6 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { Coupon } from 'src/app/Models/coupon';
 import { Router } from '@angular/router';
+import { CouponService } from 'src/app/services/coupon.service';
 
 @Component({
   selector: 'app-coupon-table',
@@ -10,38 +11,43 @@ import { Router } from '@angular/router';
 export class CouponTableComponent implements OnInit {
 
   @Input()
-  public coupons: Coupon;
+  public coupons: Coupon[];
 
   @Input()
   public pageSource: string;
 
   @Input()
   public pageID: number;
+   private userType: string;
+   private userID: number;
 
-  constructor(private router: Router, ) { }
+  constructor(private router: Router, private couponServ: CouponService) { }
 
   ngOnInit() {
+    this.userID = parseInt(localStorage.getItem('userID'), 10);
+    this.userType = localStorage.getItem('userType');
   }
 
   public canChange(): boolean {
-    const userType = localStorage.getItem('userType');
-    const userID = parseInt(localStorage.getItem('userID'), 10);
 
 
-    return (this.pageSource === 'company' && this.pageID === userID && userType === 'COMPANY') ||
+    return (this.pageID === this.userID && this.userType === 'COMPANY') ||
           //  (this.pageSource === 'customer' && this.pageID === userID && userType === 'CUSTOMER') ||
           // (this.pageSource === 'coupon') ||
-           (userType === 'ADMIN');
+           (this.userType === 'ADMIN');
   }
 
   public isCustomer(): boolean {
-    const userType = localStorage.getItem('userType');
-    const userID = parseInt(localStorage.getItem('userID'), 10);
-    return this.pageSource === 'customer' && this.pageID === userID && userType === 'CUSTOMER';
+    return (this.pageSource === 'customer' && (this.pageID === this.userID && this.userType === 'CUSTOMER' || this.userType === 'ADMIN')) ||
+     (this.userType === 'CUSTOMER' && this.pageSource === 'profile');
   }
 
   public delteCoupon(couponID: number) {
-    alert(couponID.toString());
+    const ob = this.couponServ.deleteCoupon(couponID);
+    ob.subscribe(data => {
+      const ob2 = this.couponServ.getAllCouponyByCompanyID(this.userID);
+      ob2.subscribe(coupons => this.coupons = coupons);
+  });
   }
 
   public updateCoupon(couponID: number) {
@@ -49,7 +55,11 @@ export class CouponTableComponent implements OnInit {
   }
 
   public cancellPurchase(couponID: number) {
-    alert(couponID.toString());
+    const ob = this.couponServ.cancelPurchase(couponID);
+    ob.subscribe(data => {
+      const ob2 = this.couponServ.getAllCouponyByCustomerID();
+      ob2.subscribe(coupons => this.coupons = coupons);
+    });
   }
 
 }

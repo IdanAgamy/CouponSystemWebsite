@@ -1,3 +1,21 @@
-<p>
-  update-company works!
-</p>
+<div class="container" *ngIf="company">
+  <form #myForm="ngForm" (ngSubmit)="update()">
+    <div class="form-group">
+      <label for="userName">User Name</label>
+      <input class="form-control" id="userName" #name="ngModel" required type="text" name="name" [(ngModel)]="company.companyName" placeholder="Name..."/>
+    </div>
+    <br />
+    <div class="form-group">
+      <label class="conrol-label">Email</label>
+      <input class="form-control" #email="ngModel" required type="text" name="email" [(ngModel)]="company.companyEmail"  placeholder="Email..."/>
+    </div>
+    <br />
+    <div class="form-group">
+        <label class="conrol-label">Password</label>
+      <input class="form-control" #password="ngModel" required type="password" name="password" [(ngModel)]="company.companyPassword" placeholder="Password..."/>
+    </div>
+    <br />
+
+    <button type="submit" class="btn btn-primary" [disabled]="myForm.form.invalid">Update</button>
+  </form>
+</div>
