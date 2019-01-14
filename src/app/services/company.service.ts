@@ -36,4 +36,14 @@ export class CompanyService {
     // catchError(this.handleError)
     // );
   }
+
+  public updateCompany(company: Company): Observable<Company> {
+    return this.http.put<Company>(this.url, company, { withCredentials: true });
+  }
+
+  public deleteCompany(companyID: number): Observable<Company> {
+    return this.http.delete<Company>(this.url + '/' + companyID,  { withCredentials: true }).pipe(
+      tap(data => localStorage.clear())
+    );
+  }
 }

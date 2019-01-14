@@ -1,5 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { Coupon } from 'src/app/Models/coupon';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-coupon-table',
@@ -17,7 +18,7 @@ export class CouponTableComponent implements OnInit {
   @Input()
   public pageID: number;
 
-  constructor() { }
+  constructor(private router: Router, ) { }
 
   ngOnInit() {
   }
@@ -37,6 +38,18 @@ export class CouponTableComponent implements OnInit {
     const userType = localStorage.getItem('userType');
     const userID = parseInt(localStorage.getItem('userID'), 10);
     return this.pageSource === 'customer' && this.pageID === userID && userType === 'CUSTOMER';
+  }
+
+  public delteCoupon(couponID: number) {
+    alert(couponID.toString());
+  }
+
+  public updateCoupon(couponID: number) {
+    this.router.navigate(['coupons/update/' + couponID]);
+  }
+
+  public cancellPurchase(couponID: number) {
+    alert(couponID.toString());
   }
 
 }

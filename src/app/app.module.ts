@@ -26,6 +26,9 @@ import { ProfileComponent } from './users/profile/profile.component';
 import { ProfilePageComponent } from './Home/profile-page/profile-page.component';
 import { CreatCouponComponent } from './coupons/creat-coupon/creat-coupon.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { UpdateCouponComponent } from './coupons/update-coupon/update-coupon.component';
+import { UpdateCompanyComponent } from './companies/update-company/update-company.component';
+import { UpdateCustomerComponent } from './customer/update-customer/update-customer.component';
 
 @NgModule({
   declarations: [
@@ -48,7 +51,10 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
     CouponTableComponent,
     ProfileComponent,
     ProfilePageComponent,
-    CreatCouponComponent
+    CreatCouponComponent,
+    UpdateCouponComponent,
+    UpdateCompanyComponent,
+    UpdateCustomerComponent
   ],
   imports: [
     BrowserModule,

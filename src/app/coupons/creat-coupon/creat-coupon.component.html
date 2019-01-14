@@ -59,6 +59,43 @@
       <input class="form-control" id="couponAmount" #amount="ngModel" required type="number" name="amount" [(ngModel)]="coupon.couponAmount" placeholder="0"/>
     </div>
 
+    <div class="form-group">
+      <label class="conrol-label">Coupon Type</label>
+      <select #primaryLanguage="ngModel" class="custom-select" name="primaryLanguage"
+      (blur)="!validatePrimaryLanguage($event)"
+      [(ngModel)]="coupon.couponType"
+      >
+      <option value="" >Select a Coupon Type</option>
+      <option *ngFor="let type of couponTypes">
+        {{ type }}
+      </option>
+    </select>
+    </div>
+
+    <div class="form-group">
+      <label for="title">Coupon Description</label>
+      <input
+        class="form-control"
+        id="couponMessage"
+        #message="ngModel"
+        required
+        type="text"
+        name="message"
+        [(ngModel)]="coupon.couponMessage"
+        placeholder="Coupon Description..."
+      />
+    </div>
+
+    <div class="form-group">
+      <label for="price">Coupon Price</label>
+      <input class="form-control" id="couponPrice" #amount="ngModel" required type="number" name="amount" [(ngModel)]="coupon.couponPrice" placeholder="0"/>
+    </div>
+
+    <div class="form-group">
+      <label for="couponImage">Coupon Image</label>
+      <input type="file" class="form-control-file" id="couponImage">
+    </div>
+
     <button>create</button>
   </form>
 </div>

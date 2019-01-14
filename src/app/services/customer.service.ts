@@ -13,7 +13,7 @@ export class CustomerService {
 
   constructor(private http: HttpClient) { }
 
-  creatCustomer(customer: Customer): Observable<Customer> {
+  public creatCustomer(customer: Customer): Observable<Customer> {
     return this.http.post<Customer>(this.url, customer, { withCredentials: true }).pipe(
       tap(data => {
         localStorage.setItem('userID', String(data.customerId));
@@ -30,10 +30,19 @@ export class CustomerService {
     // );
   }
 
-  // TODO- remove header
   public getCustomerIDByCustomerID(customerID: number): Observable<Customer> {
     return this.http.get<Customer>(this.url + '/' + customerID, { withCredentials: true });
     // catchError(this.handleError)
     // );
+  }
+
+  public updateCustomer(customer: Customer): Observable<Customer> {
+    return this.http.put<Customer>(this.url, customer, { withCredentials: true });
+  }
+
+  public deleteCustomer(customerID: number): Observable<Customer> {
+    return this.http.delete<Customer>(this.url + '/' + customerID,  { withCredentials: true }).pipe(
+      tap(data => localStorage.clear())
+    );
   }
 }

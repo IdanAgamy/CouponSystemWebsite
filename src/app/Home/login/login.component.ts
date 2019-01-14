@@ -34,6 +34,7 @@ export class AuthenticationComponent implements OnInit {
 
 
   public login() {
+    // this.user.userID = 1;
     // tslint:disable-next-line:prefer-const
     let ob = this.authenticationServ.login(this.user);
     // tslint:disable-next-line:prefer-const

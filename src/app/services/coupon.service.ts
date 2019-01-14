@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders, HttpErrorResponse } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Coupon } from '../Models/coupon';
-import { catchError } from 'rxjs/operators';
+import { catchError, tap } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
@@ -46,5 +46,15 @@ export class CouponService {
 
       public handleError(error: HttpErrorResponse) {
         console.log(JSON.stringify(error));
+  }
+
+  public updateCoupon(coupon: Coupon): Observable<Coupon> {
+    return this.http.put<Coupon>(this.url, coupon, { withCredentials: true });
+  }
+
+  public deleteCoupon(couponID: number): Observable<Coupon> {
+    return this.http.delete<Coupon>(this.url + '/' + couponID,  { withCredentials: true }).pipe(
+      tap(data => localStorage.clear())
+    );
   }
 }

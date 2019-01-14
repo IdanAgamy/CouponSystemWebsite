@@ -12,6 +12,9 @@ import { CompanyComponent } from './companies/company/company.component';
 import { CustomerComponent } from './customers/customer/customer.component';
 import { ProfilePageComponent } from './Home/profile-page/profile-page.component';
 import { CreatCouponComponent } from './coupons/creat-coupon/creat-coupon.component';
+import { UpdateCouponComponent } from './coupons/update-coupon/update-coupon.component';
+import { UpdateCompanyComponent } from './companies/update-company/update-company.component';
+import { UpdateCustomerComponent } from './customer/update-customer/update-customer.component';
 
 const routes: Routes = [
   {path: 'home',     component: HomeComponent},
@@ -21,6 +24,9 @@ const routes: Routes = [
   {path: 'coupons/:id', component: CouponComponent},
   {path: 'companies/:id', component: CompanyComponent},
   {path: 'customers/:id', component: CustomerComponent},
+  {path: 'coupons/update/:id', component: UpdateCouponComponent},
+  {path: 'companies/update/:id', component: UpdateCompanyComponent},
+  {path: 'customers/update/:id', component: UpdateCustomerComponent},
   {path: 'register', component: RegisterComponent},
   {path: 'login', component: AuthenticationComponent},
   {path: 'profile', component: ProfilePageComponent},

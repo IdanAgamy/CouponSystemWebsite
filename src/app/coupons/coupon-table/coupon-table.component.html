@@ -12,19 +12,19 @@
       </tr>
       <tr
         *ngFor="let coupon of coupons"
-        routerLink="/coupons/{{ coupon.couponId }}"
+
       >
-        <td>{{ coupon.couponTitle }}</td>
-        <td>{{ coupon.couponStartDate  | date: "dd, MMMM, yyyy" }}</td>
-        <td>{{ coupon.couponEndDate  | date: "dd, MMMM, yyyy" }}</td>
-        <td>{{ coupon.couponType }}</td>
-        <td>{{ coupon.couponPrice  | currency:'ILS' : TRUE }}</td>
+        <td routerLink="/coupons/{{ coupon.couponId }}">{{ coupon.couponTitle }}</td>
+        <td routerLink="/coupons/{{ coupon.couponId }}">{{ coupon.couponStartDate  | date: "dd, MMMM, yyyy" }}</td>
+        <td routerLink="/coupons/{{ coupon.couponId }}">{{ coupon.couponEndDate  | date: "dd, MMMM, yyyy" }}</td>
+        <td routerLink="/coupons/{{ coupon.couponId }}">{{ coupon.couponType }}</td>
+        <td routerLink="/coupons/{{ coupon.couponId }}">{{ coupon.couponPrice  | currency:'ILS' : true }}</td>
         <td *ngIf="canChange()">
-          <button>Delete</button>
-          <button>Update</button>
+          <button (click)="delteCoupon(coupon.couponId)">Delete</button>
+          <button (click)="updateCoupon(coupon.couponId)">Update</button>
         </td>
         <td *ngIf="isCustomer()">
-            <button>Cancell Purchase</button>
+            <button (click)="cancellPurchase(coupon.couponId)">Cancell Purchase</button>
           </td>
       </tr>
     </table>
