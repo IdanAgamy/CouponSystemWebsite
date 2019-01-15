@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { HttpClient, HttpHeaders, HttpErrorResponse } from '@angular/common/http';
+import { Observable, throwError } from 'rxjs';
 import { Company } from '../Models/company';
 import { tap, catchError } from 'rxjs/operators';
 import { ErrorService } from './error.service';
@@ -23,29 +23,31 @@ export class CompanyService {
         localStorage.setItem('userEmail', data.companyEmail);
         localStorage.setItem('userType', 'COMPANY');
         localStorage.setItem('loggedin', 'true'); }
-      ), catchError(this.errorServ.errorHandler));
+      ), catchError(err => this.errorServ.errorHandler(err)));
   }
 
   public getAllCompanies(): Observable<Company[]> {
     return this.http.get<Company[]>(this.url, { withCredentials: true }).pipe(
-      catchError(this.errorServ.errorHandler));
+      catchError(err => this.errorServ.errorHandler(err)));
   }
 
   public getCompanyByCompanyID(companyID: number): Observable<Company> {
     return this.http.get<Company>(this.url + '/' + companyID, { withCredentials: true }).pipe(
-      catchError(this.errorServ.errorHandler));
-    // catchError(this.handleError)
-    // );
+      catchError(err => this.errorServ.errorHandler(err)));
   }
 
   public updateCompany(company: Company): Observable<Company> {
     return this.http.put<Company>(this.url, company, { withCredentials: true }).pipe(
-      catchError(this.errorServ.errorHandler));
+      catchError(err => this.errorServ.errorHandler(err)));
   }
 
   public deleteCompany(companyID: number): Observable<Company> {
     return this.http.delete<Company>(this.url + '/' + companyID,  { withCredentials: true }).pipe(
-      tap(data => localStorage.clear()), catchError(this.errorServ.errorHandler)
-    );
+      catchError(err => this.errorServ.errorHandler(err)));
   }
+
+  // private handleError(error: HttpErrorResponse) {
+  //   this.errorServ.errorHandler(error);
+  //   return throwError('An error accured');
+  // }
 }

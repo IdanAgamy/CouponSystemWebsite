@@ -1,4 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
+import { Subscription } from 'rxjs';
+import { ErrorService } from 'src/app/services/error.service';
+import { ApplicarionError } from 'src/app/Models/applicationError';
 
 @Component({
   selector: 'app-error-alert',
@@ -7,12 +10,14 @@ import { Component, OnInit, Input } from '@angular/core';
 })
 export class ErrorAlertComponent implements OnInit {
 
-  @Input()
-  public errorMassege: string;
+  public subscription: Subscription;
+  public message: ApplicarionError;
 
-  constructor() { }
+
+  constructor(private errorServ: ErrorService) { }
 
   ngOnInit() {
+    this.subscription = this.errorServ.getMessage().subscribe(message => this.message = message);
   }
 
 }

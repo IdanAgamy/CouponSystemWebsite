@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { HttpClient, HttpHeaders, HttpErrorResponse } from '@angular/common/http';
+import { Observable, throwError } from 'rxjs';
 import { Customer } from '../Models/customer';
 import { tap, catchError } from 'rxjs/operators';
 import { ErrorService } from './error.service';
@@ -22,26 +22,33 @@ export class CustomerService {
         localStorage.setItem('userEmail', data.customerEmail);
         localStorage.setItem('userType', 'CUSTOMER');
         localStorage.setItem('loggedin', 'true'); }
-      ), catchError(this.errorServ.errorHandler));
+      ), catchError(err => this.errorServ.errorHandler(err)));
   }
 
   public getAllCustomers(): Observable<Customer[]> {
     return this.http.get<Customer[]>(this.url, { withCredentials: true }).pipe(
-      catchError(this.errorServ.errorHandler));
+      catchError(err => this.errorServ.errorHandler(err)));
   }
 
   public getCustomerIDByCustomerID(customerID: number): Observable<Customer> {
     return this.http.get<Customer>(this.url + '/' + customerID, { withCredentials: true }).pipe(
-      catchError(this.errorServ.errorHandler));
+      catchError(err => this.errorServ.errorHandler(err)));
   }
 
   public updateCustomer(customer: Customer): Observable<Customer> {
-    return this.http.put<Customer>(this.url, customer, { withCredentials: true });
+    return this.http.put<Customer>(this.url, customer, { withCredentials: true }).pipe(
+      catchError(err => this.errorServ.errorHandler(err)));
   }
 
   public deleteCustomer(customerID: number): Observable<Customer> {
     return this.http.delete<Customer>(this.url + '/' + customerID,  { withCredentials: true }).pipe(
-      tap(data => localStorage.clear(), catchError(this.errorServ.errorHandler))
+      tap(data => localStorage.clear()),
+      catchError(err => this.errorServ.errorHandler(err))
     );
   }
+
+  // private handleError(error: HttpErrorResponse) {
+  //   this.errorServ.errorHandler(error);
+  //   return throwError('An error accured');
+  // }
 }

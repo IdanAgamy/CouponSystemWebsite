@@ -1,3 +1,3 @@
 export class ApplicarionError {
-  constructor () {}
+  constructor (public status: number, public message: string) {}
 }

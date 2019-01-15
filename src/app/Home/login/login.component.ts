@@ -40,15 +40,15 @@ export class AuthenticationComponent implements OnInit {
     // tslint:disable-next-line:prefer-const
     ob.subscribe(data => {
       this.router.navigate(['/home']);
-    },
-    error => {
-      alert(JSON.stringify(error));
-      if (error.status === 401) {
-        this.msg = 'wrong user name or password';
-      } else {
-        this.msg = 'something wrong with server';
-    }
     });
+    // error => {
+    //   alert(JSON.stringify(error));
+    //   if (error.status === 401) {
+    //     this.msg = 'wrong user name or password';
+    //   } else {
+    //     this.msg = 'something wrong with server';
+    // }
+    // });
   }
 
   public fillCustomer() {

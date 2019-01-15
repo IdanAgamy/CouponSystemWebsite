@@ -9,16 +9,17 @@
         <th scope="col">Coupon End Date</th>
         <th scope="col">Coupon Type</th>
         <th scope="col">Coupon Price</th>
+        <th scope="col">In Stock</th>
       </tr>
       <tr
         *ngFor="let coupon of coupons"
-
       >
         <td routerLink="/coupons/{{ coupon.couponId }}">{{ coupon.couponTitle }}</td>
         <td routerLink="/coupons/{{ coupon.couponId }}">{{ coupon.couponStartDate  | date: "dd, MMMM, yyyy" }}</td>
         <td routerLink="/coupons/{{ coupon.couponId }}">{{ coupon.couponEndDate  | date: "dd, MMMM, yyyy" }}</td>
         <td routerLink="/coupons/{{ coupon.couponId }}">{{ coupon.couponType }}</td>
         <td routerLink="/coupons/{{ coupon.couponId }}">{{ coupon.couponPrice  | currency:'ILS' : true }}</td>
+        <td routerLink="/coupons/{{ coupon.couponId }}"><label *ngIf="coupon.couponAmount!=0">Yes</label><label *ngIf="coupon.couponAmount==0">No</label></td>
         <td *ngIf="canChange()">
           <button (click)="delteCoupon(coupon.couponId)">Delete</button>
           <button routerLink="/coupons/update/{{ coupon.couponId }}">Update</button>
