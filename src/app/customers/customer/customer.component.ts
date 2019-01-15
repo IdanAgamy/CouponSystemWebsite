@@ -14,6 +14,7 @@ export class CustomerComponent implements OnInit {
 
   public customer: Customer;
   public coupons: Coupon[];
+  public userType: string;
 
   constructor(private customerServ: CustomerService,
     private couponServ: CouponService,
@@ -27,4 +28,7 @@ export class CustomerComponent implements OnInit {
       couponOb.subscribe(coup => this.coupons = coup);
     }
 
+    public isAdmin(): boolean {
+      return localStorage.getItem('userType') === 'ADMIN';
+    }
 }

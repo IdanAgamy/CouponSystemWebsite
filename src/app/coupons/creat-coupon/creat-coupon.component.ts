@@ -32,14 +32,17 @@ export class CreatCouponComponent implements OnInit {
     this.coupon.couponEndDate = this.ngbDateToString(this.endDate);
     this.coupon.couponImage = 'some image address';
     const ob = this.couponServ.createCoupon(this.coupon);
-    ob.subscribe(data => this.router.navigate(['/profile']));
+    ob.subscribe(data => {
+      alert('Coupon Created');
+      this.router.navigate(['/profile']);
+    });
   }
 
   private ngbDateToString(ngbdate: NgbDate): string {
     return ngbdate.year + '-' + ngbdate.month + '-' + ngbdate.day;
   }
 
-  validatePrimaryLanguage(event) {
+  public validateCouonType(event) {
     if (this.coupon.couponType === '') {
       this.hasSelectedType = false;
     } else {

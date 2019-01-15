@@ -9,11 +9,13 @@ import { Router } from '@angular/router';
 })
 export class ProfileMenueComponent implements OnInit {
 
-  // public logedin = false;
+  public userName: string;
+
   constructor(private authenticationServ: AuthenticationService,
               private router: Router) { }
 
   ngOnInit() {
+    this.userName = localStorage.getItem('userName');
   }
 
   isLogedin(): boolean {
@@ -23,6 +25,7 @@ export class ProfileMenueComponent implements OnInit {
   logOut() {
     const ob = this.authenticationServ.logout();
     ob.subscribe(data => {
+      alert('Logging Out');
       this.router.navigate(['/home']);
     });
 

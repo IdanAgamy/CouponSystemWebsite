@@ -18,8 +18,9 @@ export class CouponTableComponent implements OnInit {
 
   @Input()
   public pageID: number;
-   private userType: string;
-   private userID: number;
+
+  private userType: string;
+  private userID: number;
 
   constructor(private router: Router, private couponServ: CouponService) { }
 
@@ -46,19 +47,21 @@ export class CouponTableComponent implements OnInit {
     const ob = this.couponServ.deleteCoupon(couponID);
     ob.subscribe(data => {
       const ob2 = this.couponServ.getAllCouponyByCompanyID(this.userID);
-      ob2.subscribe(coupons => this.coupons = coupons);
+      ob2.subscribe(coupons => {
+        alert('Coupon Deleted');
+        this.coupons = coupons;
+      });
   });
-  }
-
-  public updateCoupon(couponID: number) {
-    this.router.navigate(['coupons/update/' + couponID]);
   }
 
   public cancellPurchase(couponID: number) {
     const ob = this.couponServ.cancelPurchase(couponID);
     ob.subscribe(data => {
       const ob2 = this.couponServ.getAllCouponyByCustomerID();
-      ob2.subscribe(coupons => this.coupons = coupons);
+      ob2.subscribe(coupons => {
+        alert('Purchase Canceled');
+        this.coupons = coupons;
+      });
     });
   }
 

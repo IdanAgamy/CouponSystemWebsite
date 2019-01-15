@@ -41,6 +41,7 @@ export class CouponService {
   }
 
   public updateCoupon(coupon: Coupon): Observable<Coupon> {
+    console.log('in service');
     return this.http.put<Coupon>(this.url, coupon, { withCredentials: true }).pipe(
       catchError(err => this.errorServ.errorHandler(err)));
   }

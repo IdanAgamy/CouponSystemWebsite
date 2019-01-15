@@ -2,45 +2,123 @@
   <form #myForm="ngForm" (ngSubmit)="login()">
     <div class="form-group">
       <label for="userName">User Name</label>
-      <input class="form-control" id="userName" #name="ngModel" required type="text" name="name" [(ngModel)]="user.name" placeholder="Name..."/>
+      <input
+        class="form-control"
+        id="userName"
+        #name="ngModel"
+        required
+        minlength="3"
+        maxlength="45"
+        type="text"
+        name="name"
+        [(ngModel)]="user.name"
+        placeholder="Name..."
+      />
+      <div
+        *ngIf="name.invalid && (name.dirty || name.touched)"
+        class="alert alert-danger"
+      >
+        <div *ngIf="name.errors.required">Name is required.</div>
+        <div *ngIf="name.errors.minlength">
+          Name must be at least 3 characters long.
+        </div>
+        <div *ngIf="name.errors.pattern">Invalid character.</div>
+      </div>
     </div>
     <br />
     <div class="form-group">
       <label class="conrol-label">Email</label>
-      <input class="form-control" #email="ngModel" required type="text" name="email" [(ngModel)]="user.email"  placeholder="Email..."/>
+      <input
+        class="form-control"
+        #email="ngModel"
+        required
+        minlength="3"
+        maxlength="45"
+        type="email"
+        name="email"
+        [(ngModel)]="user.email"
+        placeholder="Email..." email
+      />
+      <div
+        *ngIf="email.invalid && (email.dirty || email.touched)"
+        class="alert alert-danger"
+      >
+        <div *ngIf="email.errors.required">Email is required.</div>
+        <div *ngIf="email.errors.minlength">
+          Email must be at least 3 characters long.
+        </div>
+        <div *ngIf="email.errors.email">Invalid Email format.</div>
+      </div>
     </div>
     <br />
     <div class="form-group">
-        <label class="conrol-label">Password</label>
-      <input class="form-control" #password="ngModel" required type="password" name="password" [(ngModel)]="user.password" placeholder="Password..."/>
+      <label class="conrol-label">Password</label>
+      <input
+        class="form-control"
+        #password="ngModel"
+        required
+        minlength="8"
+        maxlength="45"
+        pattern="[0-9A-Za-z]+"
+        type="password"
+        name="password"
+        [(ngModel)]="user.password"
+        placeholder="Password..."
+      />
+      <div
+        *ngIf="password.invalid && (password.dirty || password.touched)"
+        class="alert alert-danger"
+      >
+        <div *ngIf="password.errors.required">Password is required.</div>
+        <div *ngIf="password.errors.minlength">
+          Password must be at least 8 characters long.
+        </div>
+        <div *ngIf="password.errors.pattern">Invalid Password format.</div>
+      </div>
     </div>
     <br />
     <div class="form-check">
-      <input class="form-check-input" type="radio" name="userType" value="COMPANY" checked [(ngModel)]="user.userType"/>
-      <label class="form-check-label">
-        Company
-      </label>
+      <input
+        class="form-check-input"
+        type="radio"
+        name="userType"
+        value="COMPANY"
+        checked
+        [(ngModel)]="user.userType"
+      />
+      <label class="form-check-label"> Company </label>
     </div>
     <div class="form-check">
-      <input class="form-check-input" type="radio" name="userType" value="CUSTOMER" [(ngModel)]="user.userType"/>
-      <label class="form-check-label">
-        Customer
-      </label>
+      <input
+        class="form-check-input"
+        type="radio"
+        name="userType"
+        value="CUSTOMER"
+        [(ngModel)]="user.userType"
+      />
+      <label class="form-check-label"> Customer </label>
     </div>
     <div class="form-check">
-      <input class="form-check-input" type="radio" name="userType" value="ADMIN" [(ngModel)]="user.userType" />
-      <label class="form-check-label">
-        Admin
-      </label>
+      <input
+        class="form-check-input"
+        type="radio"
+        name="userType"
+        value="ADMIN"
+        [(ngModel)]="user.userType"
+      />
+      <label class="form-check-label"> Admin </label>
     </div>
-    <button type="submit" class="btn btn-primary" [disabled]="myForm.form.invalid">Login</button>
+    <button
+      type="submit"
+      class="btn btn-primary"
+      [disabled]="myForm.form.invalid"
+    >
+      Login
+    </button>
   </form>
-{{ user | json}}
+  {{ user | json }}
 </div>
 
 <button (click)="fillCustomer()">fill customer</button>
 <button (click)="fillCompany()">fill company</button>
 <button (click)="fillAdmin()">fill admin</button>
-
-
-

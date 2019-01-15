@@ -13,4 +13,7 @@
     <p>{{ coupon.couponMessage}}</p>
     <button *ngIf="isCustomer()" class="btn btn-warning" (click)="purchase()">Purchase</button>
   </div>
+  <div>
+    <button type="button" class="btn btn-dark" *ngIf="isAdmin()" routerLink="/coupons/update/{{coupon.companyID}}">Update Coupon</button>
+  </div>
 </div>

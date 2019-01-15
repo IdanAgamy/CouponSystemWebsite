@@ -16,7 +16,7 @@
 
       <div class="form-group col">
           <label for="price">Coupon Price</label>
-          <input class="form-control" required type="number"
+          <input class="form-control noSpinner" required type="number"
            name="price" [ngModel]="price" (ngModelChange)="getCouponsUpToPrice($event)" placeholder="0"/>
         </div>
 

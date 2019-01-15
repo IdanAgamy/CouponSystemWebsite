@@ -3,6 +3,9 @@
     <h2>{{ company.companyName }}</h2>
   </div>
   <div class="card-body">Email: {{ company.companyEmail }}</div>
+  <div>
+    <button type="button" class="btn btn-dark" *ngIf="isAdmin()" routerLink="/companies/update/{{companyId}}">Update Company</button>
+  </div>
   <div *ngIf="coupons">
     <h3>Active coupons of {{ company.companyName }}</h3>
     <div *ngIf="coupons">

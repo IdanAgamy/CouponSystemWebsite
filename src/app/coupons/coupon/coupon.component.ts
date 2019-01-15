@@ -30,7 +30,14 @@ export class CouponComponent implements OnInit {
 
   public purchase() {
     const ob = this.couponServ.purchesCoupon(this.couponId);
-    ob.subscribe(data => this.router.navigate(['/coupons']));
+    ob.subscribe(data => {
+      alert('Purchase Complete');
+      this.router.navigate(['/coupons']);
+    });
+  }
+
+  public isAdmin(): boolean {
+    return localStorage.getItem('userType') === 'ADMIN';
   }
 
 }

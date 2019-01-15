@@ -28,4 +28,8 @@ export class CompanyComponent implements OnInit {
     couponOb.subscribe(coup => this.coupons = coup);
   }
 
+  public isAdmin(): boolean {
+    return localStorage.getItem('userType') === 'ADMIN';
+  }
+
 }

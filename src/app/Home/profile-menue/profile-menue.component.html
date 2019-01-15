@@ -12,7 +12,7 @@
 
 <div *ngIf="isLogedin()">
   <br>
-  Welcome User!
+  Welcome {{userName}}!
   <br><br>
   <button type="button" class="btn btn-primary"  routerLink="/profile" *ngIf="!isAdmin()">Profile</button>
   <br>

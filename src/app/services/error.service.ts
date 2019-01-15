@@ -27,7 +27,6 @@ export class ErrorService {
   }
 
   public errorHandler(error: HttpErrorResponse) {
-    console.log('in error handler');
     const status = error.status;
     if (status === 401) {
       console.log('error 401');
@@ -36,7 +35,6 @@ export class ErrorService {
     }
     const errorType = error.error.errorType;
     const errorMessage = error.error.errorMessage;
-    console.log('in error handler' + status);
     // const inputErrorTypes = error.error.inputErrorTypes;
     switch (status) {
       case 0: {
@@ -51,10 +49,10 @@ export class ErrorService {
         this.activateAlert(status, errorType + ', ' + errorMessage + ' Please log in again.');
         break;
       }
-      case 620: { // NO_RETURN_OBJECT
-        this.activateAlert(status, errorType + ', ' + errorMessage);
-        break;
-      }
+      // case 620: { // NO_RETURN_OBJECT
+      //   this.activateAlert(status, errorType + ', ' + errorMessage);
+      //   break;
+      // }
       case 603: { // INVALID_PARAMETER
         this.activateAlert(status, errorType + ', ' + errorMessage);
         break;

@@ -1,21 +1,91 @@
 <div class="container" *ngIf="company">
-  <form #myForm="ngForm" (ngSubmit)="update()">
+  <form #updateCouponForm="ngForm" (ngSubmit)="update()">
     <div class="form-group">
       <label for="userName">User Name</label>
-      <input class="form-control" id="userName" #name="ngModel" required type="text" name="name" [(ngModel)]="company.companyName" placeholder="Name..."/>
+      <input
+        class="form-control"
+        id="userName"
+        #name="ngModel"
+        required
+        minlength="3"
+        maxlength="45"
+        type="text"
+        name="name"
+        pattern="[a-zA-Z0-9][a-zA-Z0-9 -\.]*"
+        [(ngModel)]="company.companyName"
+        placeholder="Name..."
+      />
+      <div
+        *ngIf="name.invalid && (name.dirty || name.touched)"
+        class="alert alert-danger"
+      >
+        <div *ngIf="name.errors.required">Name is required.</div>
+        <div *ngIf="name.errors.minlength">
+          Name must be at least 3 characters long.
+        </div>
+        <div *ngIf="name.errors.pattern">Invalid character.</div>
+      </div>
     </div>
     <br />
     <div class="form-group">
       <label class="conrol-label">Email</label>
-      <input class="form-control" #email="ngModel" required type="text" name="email" [(ngModel)]="company.companyEmail"  placeholder="Email..."/>
+      <input
+        class="form-control"
+        #email="ngModel"
+        required
+        minlength="3"
+        maxlength="45"
+        type="email"
+        name="email"
+        [(ngModel)]="company.companyEmail"
+        placeholder="Email..."
+        email
+      />
+      <div
+        *ngIf="email.invalid && (email.dirty || email.touched)"
+        class="alert alert-danger"
+      >
+        <div *ngIf="email.errors.required">Email is required.</div>
+        <div *ngIf="email.errors.minlength">
+          Email must be at least 3 characters long.
+        </div>
+        <div *ngIf="email.errors.email">Invalid Email format.</div>
+      </div>
     </div>
     <br />
     <div class="form-group">
-        <label class="conrol-label">Password</label>
-      <input class="form-control" #password="ngModel" required type="password" name="password" [(ngModel)]="company.companyPassword" placeholder="Password..."/>
+      <label class="conrol-label">Password</label>
+      <input
+        class="form-control"
+        #password="ngModel"
+        required
+        minlength="8"
+        maxlength="45"
+        pattern="[0-9A-Za-z]+"
+        type="password"
+        name="password"
+        [(ngModel)]="company.companyPassword"
+        placeholder="Password..."
+      />
+      <div
+        *ngIf="password.invalid && (password.dirty || password.touched)"
+        class="alert alert-danger"
+      >
+        <div *ngIf="password.errors.required">Password is required.</div>
+        <div *ngIf="password.errors.minlength">
+          Password must be at least 8 characters long.
+        </div>
+        <div *ngIf="password.errors.pattern">Invalid Password format.</div>
+      </div>
     </div>
     <br />
 
-    <button type="submit" class="btn btn-primary" [disabled]="myForm.form.invalid">Update</button>
+    <button
+      type="submit"
+      class="btn btn-primary"
+      [disabled]="updateCouponForm.form.invalid"
+    >
+      Update
+    </button>
   </form>
 </div>

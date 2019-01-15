@@ -11,26 +11,14 @@ import { Router } from '@angular/router';
 export class AuthenticationComponent implements OnInit {
 
 
-  public msg: string;
-  public user: UserLogin = new  UserLogin(); // 1, 'patric', 'a@b', 'asdss234', 'CUSTOMER'
+  public user: UserLogin;
   constructor(private authenticationServ: AuthenticationService,
               private router: Router) { }
 
   ngOnInit() {
+    this.user = new  UserLogin();
+    this.user.userType = 'COMPANY';
   }
-
-  // public UserGoodLogin() {
-  //   // tslint:disable-next-line:prefer-const
-  //   let user = new  UserLogin(1, 'patric', 'a@b', 'asdss234', 'CUSTOMER');
-  //   // tslint:disable-next-line:prefer-const
-  //   this.newMethod(user);
-  // }
-
-  // public UserBadLogin() {
-  //   // tslint:disable-next-line:prefer-const
-  //   let user = new  UserLogin(1, 'patric', 'a@b', 'asdf1234', 'CUSTOMER');
-  //   this.newMethod(user);
-  // }
 
 
   public login() {
@@ -39,6 +27,7 @@ export class AuthenticationComponent implements OnInit {
     let ob = this.authenticationServ.login(this.user);
     // tslint:disable-next-line:prefer-const
     ob.subscribe(data => {
+      alert('Login Complete');
       this.router.navigate(['/home']);
     });
     // error => {
@@ -60,7 +49,7 @@ export class AuthenticationComponent implements OnInit {
   }
 
   public fillAdmin() {
-    this.user = new  UserLogin(1, 'admin', 'admin@coupons', '1234', 'ADMIN'); //
+    this.user = new  UserLogin(1, 'admin', 'admin@coupons', '12341234', 'ADMIN'); //
   }
 
 }

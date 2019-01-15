@@ -5,13 +5,28 @@
       <input
         class="form-control"
         id="couponTitle"
-        #name="ngModel"
+        #title="ngModel"
         required
+        minlength="3"
+        maxlength="45"
+        pattern="[a-zA-Z0-9][a-zA-Z0-9 -\.]*"
         type="text"
         name="title"
         [(ngModel)]="coupon.couponTitle"
         placeholder="Coupon Title..."
       />
+      <div
+        *ngIf="title.invalid && (title.dirty || title.touched)"
+        class="alert alert-danger"
+      >
+        <div *ngIf="title.errors.required">Title is required.</div>
+        <div *ngIf="title.errors.minlength">
+            Title must be at least 3 characters long.
+        </div>
+        <div *ngIf="title.errors.pattern">
+          Invalid character.
+        </div>
+      </div>
     </div>
 
     <div class="input-group">
@@ -24,6 +39,7 @@
         [(ngModel)]="startDate"
         ngbDatepicker
         #ds="ngbDatepicker"
+        required
       />
       <div class="input-group-append">
         <button
@@ -35,7 +51,7 @@
     </div>
     <br />
     <div class="input-group">
-      <label>Coupon End Date </label> <br />
+      <label>Coupon Expertaion Date </label> <br />
       <input
         class="form-control"
         placeholder="yyyy-mm-dd"
@@ -44,6 +60,7 @@
         [(ngModel)]="endDate"
         ngbDatepicker
         #de="ngbDatepicker"
+        required
       />
       <div class="input-group-append">
         <button
@@ -56,13 +73,22 @@
 
     <div class="form-group">
       <label for="amount">Coupon Amount</label>
-      <input class="form-control" id="couponAmount" #amount="ngModel" required type="number" name="amount" [(ngModel)]="coupon.couponAmount" placeholder="0"/>
+      <input class="form-control" id="couponAmount" #amount="ngModel" required
+
+       type="number" name="amount" [(ngModel)]="coupon.couponAmount" placeholder="0"/>
+       <div
+         *ngIf="amount.invalid && (amount.dirty || amount.touched)"
+         class="alert alert-danger"
+       >
+         <div *ngIf="amount.errors.required">Please insert coupon amount.</div>
+
+       </div>
     </div>
 
     <div class="form-group">
       <label class="conrol-label">Coupon Type</label>
       <select #primaryLanguage="ngModel" class="custom-select" name="primaryLanguage"
-      (blur)="!validatePrimaryLanguage($event)"
+      (blur)="!validateCouonType($event)" required
       [(ngModel)]="coupon.couponType"
       >
       <option value="" >Select a Coupon Type</option>
@@ -79,16 +105,32 @@
         id="couponMessage"
         #message="ngModel"
         required
+        minlength="50"
         type="text"
         name="message"
         [(ngModel)]="coupon.couponMessage"
         placeholder="Coupon Description..."
-      />
+      /><div
+      *ngIf="message.invalid && (message.dirty || message.touched)"
+      class="alert alert-danger"
+    >
+    <div *ngIf="message.errors.required">Please insert coupon message.</div>
+    <div *ngIf="message.errors.minlength">Please use at least 50 characters for couopn description.</div>
+
+    </div>
     </div>
 
     <div class="form-group">
       <label for="price">Coupon Price</label>
-      <input class="form-control" id="couponPrice" #amount="ngModel" required type="number" name="amount" [(ngModel)]="coupon.couponPrice" placeholder="0"/>
+      <input class="form-control" id="couponPrice" #price="ngModel" required
+       type="number" name="price" [(ngModel)]="coupon.couponPrice" placeholder="0"/>
+      <div
+         *ngIf="price.invalid && (price.dirty || price.touched)"
+         class="alert alert-danger"
+       >
+         <div *ngIf="price.errors.required">Please insert coupon price.</div>
+
+       </div>
     </div>
 
     <div class="form-group">
@@ -96,7 +138,10 @@
       <input type="file" class="form-control-file" id="couponImage">
     </div>
 
-    <button>create</button>
+    <button
+    type="submit"
+    class="btn btn-primary"
+    [disabled]="createCouponForm.form.invalid">create</button>
   </form>
 </div>
 
