@@ -18,7 +18,7 @@ export class SearchPageComponent implements OnInit {
   public parameterTypes = ['name', 'email'];
   public userType: string;
   public parameterType: string;
-  public searchParameter: string = 'bbb';
+  public searchParameter: string;
 
   constructor(private companyServ: CompanyService,
               private customerServ: CustomerService,
@@ -28,14 +28,8 @@ export class SearchPageComponent implements OnInit {
   }
 
   public search() {
-    // alert(this.userType + this.parameterType + this.searchParameter);
     this.user = null;
     this.customers = null;
-    // if (this.userType === 'CUSTOMER') {
-    //   if (this.parameterType === 'name') {
-    //     this.getCompanyByName();
-    //   }
-    // }
     switch (this.userType) {
       case 'CUSTOMER': switch (this.parameterType) {
         case 'name': this.getCustomerByName();

@@ -11,7 +11,7 @@ import { ErrorService } from './error.service';
 export class CouponService {
 
 
-  private url = 'http://localhost:8080/CouponManagmentSystemVer3/coupons';
+  private url = 'http://localhost:8080/CouponManagmentSystemVer3/rest/coupons';
 
   constructor(private http: HttpClient, private errorServ: ErrorService) { }
 
@@ -29,7 +29,7 @@ export class CouponService {
     return this.http.get<Coupon[]>(this.url + '/byCompanyID?companyID=' + companyID, { withCredentials: true }).pipe(
       catchError(err => this.errorServ.errorHandler(err)));
   }
-  // TODO- remove header and parameter.
+
   public getAllCouponyByCustomerID(): Observable<Coupon[]> {
     return this.http.get<Coupon[]>(this.url + '/purchasedCoupons', { withCredentials: true }).pipe(
       catchError(err => this.errorServ.errorHandler(err)));

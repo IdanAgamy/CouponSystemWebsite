@@ -1,8 +1,6 @@
 export class Coupon {
   constructor (public couponId?: number,
                public couponTitle?: string,
-              //  public couponStartDate?: Date,
-              //  public couponEndDate?: Date,
                public couponStartDate?: string,
                public couponEndDate?: string,
                public couponAmount?: number,

@@ -22,22 +22,11 @@ export class AuthenticationComponent implements OnInit {
 
 
   public login() {
-    // this.user.userID = 1;
-    // tslint:disable-next-line:prefer-const
-    let ob = this.authenticationServ.login(this.user);
-    // tslint:disable-next-line:prefer-const
+    const ob = this.authenticationServ.login(this.user);
     ob.subscribe(data => {
       alert('Login Complete');
       this.router.navigate(['/home']);
     });
-    // error => {
-    //   alert(JSON.stringify(error));
-    //   if (error.status === 401) {
-    //     this.msg = 'wrong user name or password';
-    //   } else {
-    //     this.msg = 'something wrong with server';
-    // }
-    // });
   }
 
   public fillCustomer() {
@@ -49,7 +38,7 @@ export class AuthenticationComponent implements OnInit {
   }
 
   public fillAdmin() {
-    this.user = new  UserLogin(1, 'admin', 'admin@coupons', '12341234', 'ADMIN'); //
+    this.user = new  UserLogin(1, 'admin', 'admin@coupons', 'qwer1234', 'ADMIN'); //
   }
 
 }

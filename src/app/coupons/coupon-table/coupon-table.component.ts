@@ -32,10 +32,7 @@ export class CouponTableComponent implements OnInit {
   public canChange(): boolean {
 
 
-    return (this.pageID === this.userID && this.userType === 'COMPANY') ||
-          //  (this.pageSource === 'customer' && this.pageID === userID && userType === 'CUSTOMER') ||
-          // (this.pageSource === 'coupon') ||
-           (this.userType === 'ADMIN');
+    return (this.pageSource !== 'home') && ((this.pageID === this.userID && this.userType === 'COMPANY') || (this.userType === 'ADMIN'));
   }
 
   public isCustomer(): boolean {

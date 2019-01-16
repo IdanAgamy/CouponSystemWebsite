@@ -4,7 +4,6 @@ import { Coupon } from 'src/app/Models/coupon';
 import { CustomerService } from 'src/app/services/customer.service';
 import { CouponService } from 'src/app/services/coupon.service';
 import { Router } from '@angular/router';
-import { Company } from 'src/app/Models/company';
 import { CompanyService } from 'src/app/services/company.service';
 
 @Component({

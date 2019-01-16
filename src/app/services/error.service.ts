@@ -35,7 +35,6 @@ export class ErrorService {
     }
     const errorType = error.error.errorType;
     const errorMessage = error.error.errorMessage;
-    // const inputErrorTypes = error.error.inputErrorTypes;
     switch (status) {
       case 0: {
         this.activateAlert(status, 'No connection with server, please try again later.');
@@ -74,12 +73,10 @@ export class ErrorService {
         break;
       }
     }
-    // console.log(JSON.stringify(error));
     return throwError('An error accured');
   }
 
   private activateAlert (status: number, message: string) {
-    // alert(message);
     this.subject.next(new ApplicarionError(status, message));
   }
 

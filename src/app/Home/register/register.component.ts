@@ -54,9 +54,6 @@ export class RegisterComponent implements OnInit {
     let ob = this.companyServ.creatCompany(company);
     ob.subscribe(data => {
       this.router.navigate(['/home']);
-    },
-    error => {
-      alert(JSON.stringify(error));
     });
   }
 

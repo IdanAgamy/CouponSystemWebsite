@@ -30,7 +30,7 @@ export class CouponListComponent implements OnInit {
   }
 
     private resetSearch() {
-      this.couponType = this.couponTypes[0];
+      this.couponType = 'All';
       this.price = null;
       this.endDate = null;
     }

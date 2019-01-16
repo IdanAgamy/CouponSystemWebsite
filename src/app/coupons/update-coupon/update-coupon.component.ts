@@ -35,7 +35,6 @@ export class UpdateCouponComponent implements OnInit {
   }
 
   public updateCoupon() {
-    // alert('starting update');
     this.coupon.couponStartDate = this.ngbDateToString(this.startDate);
     this.coupon.couponEndDate = this.ngbDateToString(this.endDate);
     this.coupon.couponImage = 'some image address';

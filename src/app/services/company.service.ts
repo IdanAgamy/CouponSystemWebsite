@@ -10,7 +10,7 @@ import { ErrorService } from './error.service';
 })
 export class CompanyService {
 
-  private url = 'http://localhost:8080/CouponManagmentSystemVer3/companies';
+  private url = 'http://localhost:8080/CouponManagmentSystemVer3/rest/companies';
 
   constructor(private http: HttpClient, private errorServ: ErrorService) { }
 

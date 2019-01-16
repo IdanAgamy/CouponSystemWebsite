@@ -60,7 +60,7 @@
         required
         minlength="8"
         maxlength="45"
-        pattern="[0-9A-Za-z]+"
+        pattern="^([0-9]+[a-zA-Z]+|[a-zA-Z]+[0-9]+)[0-9a-zA-Z]*$"
         type="password"
         name="password"
         [(ngModel)]="customer.customerPassword"
