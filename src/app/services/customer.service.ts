@@ -42,9 +42,23 @@ export class CustomerService {
 
   public deleteCustomer(customerID: number): Observable<Customer> {
     return this.http.delete<Customer>(this.url + '/' + customerID,  { withCredentials: true }).pipe(
-      tap(data => localStorage.clear()),
+      tap(data => {
+       if (localStorage.getItem('userType') !== 'ADMIN') {
+         localStorage.clear();
+        }
+      }),
       catchError(err => this.errorServ.errorHandler(err))
     );
+  }
+
+  public getCustomerByName(customerName: string): Observable<Customer[]> {
+    return this.http.get<Customer[]>(this.url + '/byCustomerName?customerName=' + customerName, { withCredentials: true }).pipe(
+      catchError(err => this.errorServ.errorHandler(err)));
+  }
+
+  public getCustomerByEmail(customerEmail: string): Observable<Customer> {
+    return this.http.get<Customer>(this.url + '/' + customerEmail + '/byCustomerEmail', { withCredentials: true }).pipe(
+      catchError(err => this.errorServ.errorHandler(err)));
   }
 
   // private handleError(error: HttpErrorResponse) {

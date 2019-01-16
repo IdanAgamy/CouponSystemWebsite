@@ -4,9 +4,9 @@
       <div class="form-group col">
         <label class="conrol-label">Coupon Type</label>
         <select
-          #primaryLanguage="ngModel"
+          #couponType="ngModel"
           class="custom-select"
-          name="primaryLanguage"
+          name="couponType"
           [ngModel]="couponType"
           (ngModelChange)="getCouponByType($event)"
         >

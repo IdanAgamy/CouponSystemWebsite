@@ -43,6 +43,21 @@ export class CompanyService {
 
   public deleteCompany(companyID: number): Observable<Company> {
     return this.http.delete<Company>(this.url + '/' + companyID,  { withCredentials: true }).pipe(
+      tap(data => {
+        if (localStorage.getItem('userType') !== 'ADMIN') {
+          localStorage.clear();
+         }
+       }),
+       catchError(err => this.errorServ.errorHandler(err))
+     );
+  }
+
+  public getCompanyByName(companyName: string) {
+    return this.http.get<Company>(this.url + '/' + companyName + '/byCompanyName', { withCredentials: true }).pipe(
+      catchError(err => this.errorServ.errorHandler(err)));
+  }
+  public getCompanyByEmail(companyEmail: string) {
+    return this.http.get<Company>(this.url + '/' + companyEmail + '/byCompanyEmail', { withCredentials: true }).pipe(
       catchError(err => this.errorServ.errorHandler(err)));
   }
 

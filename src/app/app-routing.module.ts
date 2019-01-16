@@ -18,6 +18,7 @@ import { UpdateCustomerComponent } from './customers/update-customer/update-cust
 import { AdminGuard } from './guards/admin.guard';
 import { NotCompanyGuard } from './guards/notCompany.guard';
 import { NotCustomerGuard } from './guards/notCustomer.guard';
+import { SearchPageComponent } from './Home/search-page/search-page.component';
 
 const routes: Routes = [
   {path: 'home',     component: HomeComponent},
@@ -30,6 +31,7 @@ const routes: Routes = [
   {path: 'coupons/update/:id', component: UpdateCouponComponent, canActivate: [NotCustomerGuard]},
   {path: 'companies/update/:id', component: UpdateCompanyComponent, canActivate: [NotCustomerGuard]},
   {path: 'customers/update/:id', component: UpdateCustomerComponent, canActivate: [NotCompanyGuard]},
+  {path: 'searchUsers', component: SearchPageComponent, canActivate: [AdminGuard]},
   {path: 'register', component: RegisterComponent},
   {path: 'login', component: AuthenticationComponent},
   {path: 'profile', component: ProfilePageComponent},

@@ -1,0 +1,201 @@
+<div>
+  <form #form="ngForm">
+    <div class="row">
+      <div class="form-group col">
+      <label for="searchParameter">Search Paramater</label>
+      <input
+        class="form-control"
+        id="searchParameter"
+        #parameter="ngModel"
+        required
+        minlength="3"
+        type="text"
+        name="searchParameter"
+        [(ngModel)]="searchParameter"
+      />
+      </div>
+      <div class="form-group col">
+          <label class="conrol-label">User Type</label>
+          <select
+            class="custom-select"
+            name="couponType"
+            [(ngModel)]="userType"
+          >
+            <option *ngFor="let type of userTypes"> {{ type }} </option>
+          </select>
+      </div>
+      <div class="form-group col">
+          <label class="conrol-label">Search Type</label>
+          <select
+            class="custom-select"
+            name="parameterType"
+            [(ngModel)]="parameterType"
+          >
+            <option *ngFor="let type of parameterTypes"> {{ type }} </option>
+          </select>
+      </div>
+      <div class="form-group col">
+          <br>
+          <button type="button" class="btn btn-dark" (click)="search()">Search</button>
+        </div>
+    </div>
+  </form>
+</div>
+<div *ngIf="user">
+    <table class="table table-bordered table-hover table-striped">
+        <tr>
+          <th scope="col">User ID</th>
+          <th scope="col">User Name</th>
+          <th scope="col">User E-Mail</th>
+          <th scope="col">User Type</th>
+          <th scope="col">User Password</th>
+          <th scope="col">Actions</th>
+        </tr>
+        <tr
+        >
+          <td>{{ user.userID }}</td>
+          <td>{{ user.name }}</td>
+          <td>{{ user.email }}</td>
+          <td>{{ user.userType }}</td>
+          <td>{{ user.password }}</td>
+          <td>
+            <button (click)="delete(user.customerId)">Delete</button>
+            <button (click)="update(user.customerId)">Update</button>
+          </td>
+        </tr>
+      </table>
+</div>
+<div *ngIf="customers">
+    <table class="table table-bordered table-hover table-striped">
+        <tr>
+          <th scope="col">User ID</th>
+          <th scope="col">User Name</th>
+          <th scope="col">User E-Mail</th>
+          <th scope="col">User Type</th>
+          <th scope="col">User Password</th>
+          <th scope="col">Actions</th>
+        </tr>
+        <tr *ngFor="let user of customers"
+        >
+          <td>{{ user.customerId }}</td>
+          <td>{{ user.customerName }}</td>
+          <td>{{ user.customerEmail }}</td>
+          <td>CUSTOMER</td>
+          <td>{{ user.customerPassword }}</td>
+          <td>
+              <button (click)="delete(user.customerId)">Delete</button>
+              <button (click)="update(user.customerId)">Update</button>
+          </td>
+        </tr>
+      </table>
+</div>
+
+import { Component, OnInit } from '@angular/core';
+import { UserLogin } from 'src/app/Models/userLogger';
+import { CompanyService } from 'src/app/services/company.service';
+import { CustomerService } from 'src/app/services/customer.service';
+import { Customer } from 'src/app/Models/customer';
+import { Company } from 'src/app/Models/company';
+import { Router } from '@angular/router';
+
+@Component({
+  selector: 'app-search-users',
+  templateUrl: './search-users.component.html',
+  styleUrls: ['./search-users.component.css']
+})
+export class SearchUsersComponent implements OnInit {
+
+  public user: UserLogin;
+  public customers: Customer[];
+  public userTypes = ['CUSTOMER', 'COMPANY'];
+  public parameterTypes = ['name', 'email'];
+  public userType: string;
+  public parameterType: string;
+  public searchParameter: string = 'bbb';
+
+  constructor(private companyServ: CompanyService,
+              private customerServ: CustomerService,
+              private router: Router) { }
+
+  ngOnInit() {
+  }
+
+  public search() {
+    // alert(this.userType + this.parameterType + this.searchParameter);
+    this.user = null;
+    this.customers = null;
+    // if (this.userType === 'CUSTOMER') {
+    //   if (this.parameterType === 'name') {
+    //     this.getCompanyByName();
+    //   }
+    // }
+    switch (this.userType) {
+      case 'CUSTOMER': switch (this.parameterType) {
+        case 'name': this.getCustomerByName();
+        break;
+        case 'email': this.getCustomerByEmail();
+        break;
+      }
+      break;
+      case 'COMPANY':  switch (this.parameterType) {
+        case 'name': this.getCompanyByName();
+        break;
+        case 'email': this.getCompanyByEmail();
+        break;
+      }
+      break;
+    }
+  }
+
+  public getCompanyByName() {
+    const ob = this.companyServ.getCompanyByName(this.searchParameter);
+    ob.subscribe(company => this.user = new UserLogin(
+      company.companyId, company.companyName, company.companyEmail, company.companyPassword, 'COMPANY'));
+  }
+  public getCompanyByEmail() {
+    const ob = this.companyServ.getCompanyByEmail(this.searchParameter);
+    ob.subscribe(company => this.user = new UserLogin(
+      company.companyId, company.companyName, company.companyEmail, company.companyPassword, 'COMPANY'));
+  }
+
+  public getCustomerByName() {
+    const ob = this.customerServ.getCustomerByName(this.searchParameter);
+    ob.subscribe(customers => this.customers = customers);
+  }
+
+  public getCustomerByEmail() {
+    const ob = this.customerServ.getCustomerByEmail(this.searchParameter);
+    ob.subscribe(customer => this.user = new UserLogin(
+      customer.customerId, customer.customerName, customer.customerEmail, customer.customerPassword, 'CUSTOMER'));
+  }
+
+  public update(userID) {
+    const num = parseInt(userID, 10);
+    switch (this.userType) {
+      case 'CUSTOMER': this.router.navigate(['/customers/update/' + userID]);
+      break;
+      case 'COMPANY': this.router.navigate(['/companies/update/' + userID]);
+      break;
+    }
+  }
+
+  public delete(userID: number) {
+    switch (this.userType) {
+      case 'CUSTOMER': switch (this.parameterType) {
+        case 'name': this.getCustomerByName();
+        break;
+        case 'email': this.getCustomerByEmail();
+        break;
+      }
+      break;
+      case 'COMPANY':  switch (this.parameterType) {
+        case 'name': this.getCompanyByName();
+        break;
+        case 'email': this.getCompanyByEmail();
+        break;
+      }
+      break;
+    }
+  }
+
+}

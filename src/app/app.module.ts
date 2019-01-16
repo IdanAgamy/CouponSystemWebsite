@@ -22,13 +22,13 @@ import { CompanyComponent } from './companies/company/company.component';
 import { CompanyListComponent } from './companies/company-list/company-list.component';
 import { ErrorAlertComponent } from './Home/error-alert/error-alert.component';
 import { CouponTableComponent } from './coupons/coupon-table/coupon-table.component';
-import { ProfileComponent } from './users/profile/profile.component';
 import { ProfilePageComponent } from './Home/profile-page/profile-page.component';
 import { CreatCouponComponent } from './coupons/creat-coupon/creat-coupon.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { UpdateCouponComponent } from './coupons/update-coupon/update-coupon.component';
 import { UpdateCompanyComponent } from './companies/update-company/update-company.component';
 import { UpdateCustomerComponent } from './customers/update-customer/update-customer.component';
+import { SearchPageComponent } from './Home/search-page/search-page.component';
 
 @NgModule({
   declarations: [
@@ -49,12 +49,12 @@ import { UpdateCustomerComponent } from './customers/update-customer/update-cust
     AuthenticationComponent,
     ErrorAlertComponent,
     CouponTableComponent,
-    ProfileComponent,
     ProfilePageComponent,
     CreatCouponComponent,
     UpdateCouponComponent,
     UpdateCompanyComponent,
-    UpdateCustomerComponent
+    UpdateCustomerComponent,
+    SearchPageComponent
   ],
   imports: [
     BrowserModule,
