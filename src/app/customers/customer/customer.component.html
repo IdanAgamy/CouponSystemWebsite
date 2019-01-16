@@ -1,22 +1,30 @@
 <div *ngIf="customer" class="card">
-    <div class="card-header">
-      <h2>{{ customer.customerName }}</h2>
-    </div>
-    <div class="card-body">Email: {{ customer.customerEmail }}</div>
-    <div>
-      <button type="button" class="btn btn-dark" *ngIf="isAdmin()" routerLink="/customers/update/{{customer.customerId}}">Update Customer</button>
-    </div>
+  <div class="card-header">
+    <h2>{{ customer.customerName }}</h2>
+  </div>
+  <div class="card-body">Email: {{ customer.customerEmail }}</div>
+  <div>
+    <button
+      type="button"
+      class="btn btn-dark"
+      *ngIf="isAdmin()"
+      routerLink="/customers/update/{{ customer.customerId }}"
+    >
+      Update Customer
+    </button>
+  </div>
+  <div *ngIf="coupons">
+    <h3>You had purchased this coupons:</h3>
     <div *ngIf="coupons">
-      <h3>You had purchased this coupons:</h3>
-      <div *ngIf="coupons">
-        <app-coupon-table [coupons]="coupons" [pageSource]="'customer'"></app-coupon-table>
-      </div>
-    </div>
-    <div *ngIf="!coupons">
-      <h3>{{customer.customerName}} hadn't purchased any coupons.</h3>
+      <app-coupon-table
+        [coupons]="coupons"
+        [pageSource]="'customer'"
+      ></app-coupon-table>
     </div>
   </div>
+  <div *ngIf="!coupons">
+    <h3>{{ customer.customerName }} hadn't purchased any coupons.</h3>
+  </div>
+</div>
 
-  <div *ngIf="!customer" class="card">
-    <p>fuck</p>
-  </div>
+<div *ngIf="!customer" class="card"><p>fuck</p></div>

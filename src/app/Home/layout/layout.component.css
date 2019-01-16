@@ -1,18 +1,12 @@
 section{
   height: 100%;
-  /* border:  2px solid black; */
-  /* text-align: center; */
-  box-sizing: border-box; /* הרוחב והגובה תופסים גם עד סוף הגבול */
+  box-sizing: border-box;
   display: grid;
   grid-template-columns: repeat(12, 1fr);
   grid-template-rows: 17% 76% 7%;
   font-family: sans-serif;
   overflow-y: scroll;
 }
-
-/* section >*{
-  border:  2px solid black;
-} */
 
 header, footer{
   grid-column: span 12;

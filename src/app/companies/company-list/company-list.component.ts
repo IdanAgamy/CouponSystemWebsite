@@ -14,8 +14,7 @@ export class CompanyListComponent implements OnInit {
   constructor(private companyServ: CompanyService) { }
 
   ngOnInit() {
-    // tslint:disable-next-line:prefer-const
-    let ob = this.companyServ.getAllCompanies();
+    const ob = this.companyServ.getAllCompanies();
     ob.subscribe(comps => this.companies = comps);
   }
 

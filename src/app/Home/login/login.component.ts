@@ -29,16 +29,4 @@ export class AuthenticationComponent implements OnInit {
     });
   }
 
-  public fillCustomer() {
-    this.user = new  UserLogin(1, 'patric', 'a@b', 'asdss234', 'CUSTOMER'); //
-  }
-
-  public fillCompany() {
-    this.user = new  UserLogin(1, 'BBB', 'BBB@gmail.com', '1234bBBb', 'COMPANY'); //
-  }
-
-  public fillAdmin() {
-    this.user = new  UserLogin(1, 'admin', 'admin@coupons', 'qwer1234', 'ADMIN'); //
-  }
-
 }

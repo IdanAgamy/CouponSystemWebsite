@@ -21,11 +21,9 @@
       >
         <div *ngIf="title.errors.required">Title is required.</div>
         <div *ngIf="title.errors.minlength">
-            Title must be at least 3 characters long.
+          Title must be at least 3 characters long.
         </div>
-        <div *ngIf="title.errors.pattern">
-          Invalid character.
-        </div>
+        <div *ngIf="title.errors.pattern">Invalid character.</div>
       </div>
     </div>
 
@@ -73,29 +71,37 @@
 
     <div class="form-group">
       <label for="amount">Coupon Amount</label>
-      <input class="form-control" id="couponAmount" #amount="ngModel" required
-
-       type="number" name="amount" [(ngModel)]="coupon.couponAmount" placeholder="0"/>
-       <div
-         *ngIf="amount.invalid && (amount.dirty || amount.touched)"
-         class="alert alert-danger"
-       >
-         <div *ngIf="amount.errors.required">Please insert coupon amount.</div>
-
-       </div>
+      <input
+        class="form-control"
+        id="couponAmount"
+        #amount="ngModel"
+        required
+        type="number"
+        name="amount"
+        [(ngModel)]="coupon.couponAmount"
+        placeholder="0"
+      />
+      <div
+        *ngIf="amount.invalid && (amount.dirty || amount.touched)"
+        class="alert alert-danger"
+      >
+        <div *ngIf="amount.errors.required">Please insert coupon amount.</div>
+      </div>
     </div>
 
     <div class="form-group">
       <label class="conrol-label">Coupon Type</label>
-      <select #primaryLanguage="ngModel" class="custom-select" name="primaryLanguage"
-      (blur)="!validateCouonType($event)" required
-      [(ngModel)]="coupon.couponType"
+      <select
+        #primaryLanguage="ngModel"
+        class="custom-select"
+        name="primaryLanguage"
+        (blur)="!validateCouonType($event)"
+        required
+        [(ngModel)]="coupon.couponType"
       >
-      <option value="" >Select a Coupon Type</option>
-      <option *ngFor="let type of couponTypes">
-        {{ type }}
-      </option>
-    </select>
+        <option value="">Select a Coupon Type</option>
+        <option *ngFor="let type of couponTypes"> {{ type }} </option>
+      </select>
     </div>
 
     <div class="form-group">
@@ -110,38 +116,50 @@
         name="message"
         [(ngModel)]="coupon.couponMessage"
         placeholder="Coupon Description..."
-      /><div
-      *ngIf="message.invalid && (message.dirty || message.touched)"
-      class="alert alert-danger"
-    >
-    <div *ngIf="message.errors.required">Please insert coupon message.</div>
-    <div *ngIf="message.errors.minlength">Please use at least 50 characters for couopn description.</div>
-
-    </div>
+      />
+      <div
+        *ngIf="message.invalid && (message.dirty || message.touched)"
+        class="alert alert-danger"
+      >
+        <div *ngIf="message.errors.required">Please insert coupon message.</div>
+        <div *ngIf="message.errors.minlength">
+          Please use at least 50 characters for couopn description.
+        </div>
+      </div>
     </div>
 
     <div class="form-group">
       <label for="price">Coupon Price</label>
-      <input class="form-control" id="couponPrice" #price="ngModel" required
-       type="number" name="price" [(ngModel)]="coupon.couponPrice" placeholder="0"/>
+      <input
+        class="form-control"
+        id="couponPrice"
+        #price="ngModel"
+        required
+        type="number"
+        name="price"
+        [(ngModel)]="coupon.couponPrice"
+        placeholder="0"
+      />
       <div
-         *ngIf="price.invalid && (price.dirty || price.touched)"
-         class="alert alert-danger"
-       >
-         <div *ngIf="price.errors.required">Please insert coupon price.</div>
-
-       </div>
+        *ngIf="price.invalid && (price.dirty || price.touched)"
+        class="alert alert-danger"
+      >
+        <div *ngIf="price.errors.required">Please insert coupon price.</div>
+      </div>
     </div>
 
     <div class="form-group">
       <label for="couponImage">Coupon Image</label>
-      <input type="file" class="form-control-file" id="couponImage">
+      <input type="file" class="form-control-file" id="couponImage" />
     </div>
 
     <button
-    type="submit"
-    class="btn btn-primary"
-    [disabled]="createCouponForm.form.invalid">create</button>
+      type="submit"
+      class="btn btn-primary"
+      [disabled]="createCouponForm.form.invalid"
+    >
+      create
+    </button>
   </form>
 </div>
 

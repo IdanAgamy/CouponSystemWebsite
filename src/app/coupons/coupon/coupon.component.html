@@ -1,19 +1,28 @@
 <div *ngIf="coupon" class="card">
   <div class="card-header">
     <h2>{{ coupon.couponTitle }}</h2>
-    <br><br>
+    <br /><br />
   </div>
   <div class="card-body">
-    <img src="{{coupon.couponImage}}">
-    <p>Coupon Type: {{ coupon.couponType}}</p>
+    <img src="{{ coupon.couponImage }}" />
+    <p>Coupon Type: {{ coupon.couponType }}</p>
     <p>Start Date: {{ coupon.couponStartDate | date: "dd, MMMM, yyyy" }}</p>
     <p>End Date: {{ coupon.couponEndDate | date: "dd, MMMM, yyyy" }}</p>
-    <p>Price: {{ coupon.couponPrice | currency:'ILS' : true}}</p>
-    <p>Amount Available: {{ coupon.couponAmount}}</p>
-    <p>{{ coupon.couponMessage}}</p>
-    <button *ngIf="isCustomer()" class="btn btn-success" (click)="purchase()">Purchase</button>
+    <p>Price: {{ coupon.couponPrice | currency: "ILS":true }}</p>
+    <p>Amount Available: {{ coupon.couponAmount }}</p>
+    <p>{{ coupon.couponMessage }}</p>
+    <button *ngIf="isCustomer()" class="btn btn-success" (click)="purchase()">
+      Purchase
+    </button>
   </div>
   <div>
-    <button type="button" class="btn btn-dark" *ngIf="isAdmin()" routerLink="/coupons/update/{{coupon.companyID}}">Update Coupon</button>
+    <button
+      type="button"
+      class="btn btn-dark"
+      *ngIf="isAdmin()"
+      routerLink="/coupons/update/{{ coupon.companyID }}"
+    >
+      Update Coupon
+    </button>
   </div>
 </div>

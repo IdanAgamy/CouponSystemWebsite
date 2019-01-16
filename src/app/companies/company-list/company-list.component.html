@@ -7,7 +7,7 @@
         <th scope="col">Company E-Mail</th>
       </tr>
       <tr
-        *ngFor="let company of companies"
+        *ngFor="let company of companies" 
         routerLink="/companies/{{ company.companyId }}"
       >
         <td>{{ company.companyName }}</td>

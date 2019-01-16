@@ -42,11 +42,11 @@ export class CreatCouponComponent implements OnInit {
     return ngbdate.year + '-' + ngbdate.month + '-' + ngbdate.day;
   }
 
-  public validateCouonType(event) {
+  public validateCouonType(event): boolean {
     if (this.coupon.couponType === '') {
-      this.hasSelectedType = false;
+      return false;
     } else {
-      this.hasSelectedType = true;
+      return true;
     }
   }
 

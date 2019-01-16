@@ -15,32 +15,40 @@
       </div>
 
       <div class="form-group col">
-          <label for="price">Coupon Price</label>
-          <input class="form-control noSpinner" required type="number"
-           name="price" [ngModel]="price" (ngModelChange)="getCouponsUpToPrice($event)" placeholder="0"/>
-        </div>
+        <label for="price">Coupon Price</label>
+        <input
+          class="form-control noSpinner"
+          required
+          type="number"
+          name="price"
+          [ngModel]="price"
+          (ngModelChange)="getCouponsUpToPrice($event)"
+          placeholder="0"
+        />
+      </div>
 
-        <div class="form-group col">
-            <div>
-                <label>Coupon Experation Date </label> <br />
-                <input
-                  class="form-control"
-                  placeholder="Experation Date"
-                  [minDate]="today"
-                  name="endDate"
-                  [ngModel]="endDate" (ngModelChange)="getCouponsUpToEndDate($event)"
-                  ngbDatepicker
-                  #ds="ngbDatepicker"
-                />
-                <div class="input-group col">
-                  <button
-                    class="btn btn-outline-secondary calendar"
-                    (click)="ds.toggle()"
-                    type="button"
-                  ></button>
-                </div>
-              </div>
+      <div class="form-group col">
+        <div>
+          <label>Coupon Experation Date </label> <br />
+          <input
+            class="form-control"
+            placeholder="Experation Date"
+            [minDate]="today"
+            name="endDate"
+            [ngModel]="endDate"
+            (ngModelChange)="getCouponsUpToEndDate($event)"
+            ngbDatepicker
+            #ds="ngbDatepicker"
+          />
+          <div class="input-group col">
+            <button
+              class="btn btn-outline-secondary calendar"
+              (click)="ds.toggle()"
+              type="button"
+            ></button>
+          </div>
         </div>
+      </div>
     </div>
   </form>
 </div>

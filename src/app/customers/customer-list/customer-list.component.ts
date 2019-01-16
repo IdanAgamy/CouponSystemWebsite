@@ -14,8 +14,7 @@ export class CustomerListComponent implements OnInit {
   constructor(private customerServ: CustomerService) { }
 
   ngOnInit() {
-    // tslint:disable-next-line:prefer-const
-    let ob = this.customerServ.getAllCustomers();
+    const ob = this.customerServ.getAllCustomers();
     ob.subscribe(comps => this.customers = comps);
   }
 
