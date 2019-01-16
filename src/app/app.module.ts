@@ -3,7 +3,6 @@ import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 
 import { AppRoutingModule } from './app-routing.module';
-import { AppComponent } from './app.component';
 import { LayoutComponent } from './Home/layout/layout.component';
 import { HeaderComponent } from './Home/header/header.component';
 import { FooterComponent } from './Home/footer/footer.component';
@@ -32,7 +31,6 @@ import { SearchPageComponent } from './Home/search-page/search-page.component';
 
 @NgModule({
   declarations: [
-    AppComponent,
     LayoutComponent,
     HeaderComponent,
     FooterComponent,

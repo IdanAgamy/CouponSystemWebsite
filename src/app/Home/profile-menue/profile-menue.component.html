@@ -1,23 +1,40 @@
 <div *ngIf="!isLogedin()">
-  <br>
+  <br />
   <p>Welcome!</p>
 
   <p>For new user, please register</p>
 
-  <button type="button" class="btn btn-primary"  routerLink="/register">Register</button>
-<br><br>
+  <button type="button" class="btn btn-primary" routerLink="/register">
+    Register
+  </button>
+  <br /><br />
   <p>For an existing account</p>
-<button type="button" class="btn btn-secondary"  routerLink="/login">Log In</button>
+  <button type="button" class="btn btn-secondary" routerLink="/login">
+    Log In
+  </button>
 </div>
 
 <div *ngIf="isLogedin()">
-  <br>
-  Welcome {{userName}}!
-  <br><br>
-  <button type="button" class="btn btn-primary"  routerLink="/profile" *ngIf="!isAdmin()">Profile</button>
-  <button type="button" class="btn btn-primary"  routerLink="/searchUsers" *ngIf="isAdmin()">Search For Users</button>
-  <br><br>
-  <button type="button" class="btn btn-primary" (click)="logOut()">Log out</button>
+  <br />
+  Welcome {{ userName }}! <br /><br />
+  <button
+    type="button"
+    class="btn btn-primary"
+    routerLink="/profile"
+    *ngIf="!isAdmin()"
+  >
+    Profile
+  </button>
+  <button
+    type="button"
+    class="btn btn-primary"
+    routerLink="/searchUsers"
+    *ngIf="isAdmin()"
+  >
+    Search For Users
+  </button>
+  <br /><br />
+  <button type="button" class="btn btn-primary" (click)="logOut()">
+    Log out
+  </button>
 </div>
-
-

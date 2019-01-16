@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpErrorResponse } from '@angular/common/http';
+import { HttpErrorResponse } from '@angular/common/http';
 import { throwError, Subject, Observable } from 'rxjs';
 import { Router, NavigationStart } from '@angular/router';
 import { ApplicarionError } from '../Models/applicationError';
@@ -29,8 +29,8 @@ export class ErrorService {
   public errorHandler(error: HttpErrorResponse) {
     const status = error.status;
     if (status === 401) {
-      console.log('error 401');
-      this.activateAlert(status, 'Wrong user name or paswword, please try again.');
+      this.activateAlert(status, 'Wrong user name or password, please try again.');
+      this.router.navigate(['/login']);
       return throwError('Wrong user name or paswword, please try again.');
     }
     const errorType = error.error.errorType;

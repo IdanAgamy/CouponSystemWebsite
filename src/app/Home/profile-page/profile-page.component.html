@@ -5,32 +5,42 @@
   <div class="card-body">Email: {{ user.email }}</div>
 
   <div>
-      <button type="button" class="btn btn-dark" (click)="updateAcc()">Update Account</button>
-      <button type="button" class="btn btn-dark" (click)="deleteAcc()">Delete Account</button>
-      <button type="button" class="btn btn-dark" routerLink="/createCoupon">Create Coupon</button>
+    <button type="button" class="btn btn-dark" (click)="updateAcc()">
+      Update Account
+    </button>
+    <button type="button" class="btn btn-dark" (click)="deleteAcc()">
+      Delete Account
+    </button>
+    <button type="button" class="btn btn-dark" routerLink="/createCoupon">
+      Create Coupon
+    </button>
   </div>
 
   <div *ngIf="user.userType === 'COMPANY'">
-  <div *ngIf="coupons">
-    <h3>Your Active Coupons</h3>
     <div *ngIf="coupons">
-      <app-coupon-table [coupons]="coupons" [pageSource]="'company'" [pageID]="user.userID"></app-coupon-table>
+      <h3>Your Active Coupons</h3>
+      <div *ngIf="coupons">
+        <app-coupon-table
+          [coupons]="coupons"
+          [pageSource]="'company'"
+          [pageID]="user.userID"
+        ></app-coupon-table>
+      </div>
     </div>
+    <div *ngIf="!coupons"><h3>You have no active coupons.</h3></div>
   </div>
-  <div *ngIf="!coupons">
-    <h3>You have no active coupons.</h3>
-  </div>
-</div>
 
-<div *ngIf="user.userType === 'CUSTOMER'">
+  <div *ngIf="user.userType === 'CUSTOMER'">
     <div *ngIf="coupons">
       <h3>Your PUrchased Coupons</h3>
       <div *ngIf="coupons">
-        <app-coupon-table [coupons]="coupons" [pageSource]="'profile'" [pageID]="user.userID"></app-coupon-table>
+        <app-coupon-table
+          [coupons]="coupons"
+          [pageSource]="'profile'"
+          [pageID]="user.userID"
+        ></app-coupon-table>
       </div>
     </div>
-    <div *ngIf="!coupons">
-      <h3>You have not purchased any coupons.</h3>
-    </div>
+    <div *ngIf="!coupons"><h3>You have not purchased any coupons.</h3></div>
   </div>
 </div>

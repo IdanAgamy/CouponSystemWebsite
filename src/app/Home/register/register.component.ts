@@ -45,13 +45,11 @@ export class RegisterComponent implements OnInit {
   }
 
   private companyRegister() {
-    // tslint:disable-next-line:prefer-const
-    let company = new Company();
+    const company = new Company();
     company.companyName = this.user.name;
     company.companyEmail = this.user.email;
     company.companyPassword = this.user.password;
-    // tslint:disable-next-line:prefer-const
-    let ob = this.companyServ.creatCompany(company);
+    const ob = this.companyServ.creatCompany(company);
     ob.subscribe(data => {
       this.router.navigate(['/home']);
     });
